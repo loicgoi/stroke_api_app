@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+import requests
+import plotly.express as px
+import pandas as pd
 from stroke_api.filters import filter_patient, get_stroke_data
 
 st.set_page_config(page_title="Stroke Prediction App", layout="wide")
@@ -75,3 +78,131 @@ with viz:
 
 with stats:
     st.header("Stats")
+
+tab1, tab2, tab3, tab4 = st.tabs(["Accueil", "Données", "Visualisations", "Statistiques" ])
+
+with tab1 :
+    st.markdown (("Bienvenue sur l’application de visualisation des données AVC. Cette application vous permet d’explorer les données des patients, visualiser les statistiques clés, et comprendre les facteurs associés aux AVC."))
+
+
+def get_patients_data ():
+    requests.get("http://localhosts:8000/filter_patient/") 
+    return pd.DataFrame(response.json())
+
+with tab2:
+    st.header("Données des patients")
+
+    # Appelle de l'API
+    df = get_filter_patient_data ()
+
+    # Filtrage des données :
+    genre = st.selectbox("Genre", ["All"] + df("gender").unique().tolist())
+    AVC = st.selectbox("AVC", ["All", 0, 1])
+    age_max = st.slider("age_max", int(df["age"].min()), int(df["age"].max()), 60)
+
+    # Application des filtrages
+    if genre != "All":
+        df = df(df("gender") == genre)
+    if AVC != "All":
+        df = df(df("stroke") == AVC)
+    df= df(df("age") == age_max)
+
+    # Affichage
+    st.dataframe(df)
+
+
+with tab3:
+    st.header("Visualisations")
+
+    # Le taux d'AVC par genre
+    stroke_by_gender = df.groupby("gender")["stroke"].mean().reset_index()
+    stroke_by_gender["stroke"] = stroke_by_gender["stroke"] * 100  # conversion en %
+
+    fig1 = px.bar(
+        stroke_by_gender,
+        x="gender",
+        y="stroke",
+        labels={"stroke": "Taux d'AVC (%)", "gender": "Genre"},
+        title="Taux d'AVC en fonction du genre",
+        text=stroke_by_gender["stroke"].round(1)  # afficher les % sur les barres
+    )
+    fig1.update_traces(textposition="outside")
+    st.plotly_chart(fig1)
+
+    # Graphique en barres : nombre d'AVC par tranche d'âge
+    fig2 = px.bar(
+        df.groupby("age")["stroke"].sum().reset_index(),
+        x="age",
+        y="stroke",
+        title="Nombre d'AVC par âge",
+        labels={"age": "Âge", "stroke": "Nombre d'AVC"},
+        color="stroke"
+    )
+    st.plotly_chart(fig2)
+
+
+    #  Lien entre hypertension, âge moyen et AVC
+    fig3 = px.bar(
+        df.groupby(["hypertension", "stroke"])["age"].mean().reset_index(),
+        x="hypertension",
+        y="age",
+        color="stroke",
+        barmode="group",
+        labels={
+            "hypertension": "Hypertension (0 = Non, 1 = Oui)",
+            "age": "Âge moyen",
+            "stroke": "AVC (0 = Non, 1 = Oui)"
+        },
+        title="Âge moyen selon hypertension et AVC"
+    )
+    st.plotly_chart(fig3)
+
+    # Le lien entre hypertension, âge moyen et AVC
+    fig4 = px.bar(
+        df.groupby(["hypertension", "stroke"])["age"].mean().reset_index(),
+        x="hypertension",
+        y="age",
+        color="stroke",
+        barmode="group",
+        labels={
+            "hypertension": "Hypertension (0 = Non, 1 = Oui)",
+            "age": "Âge moyen",
+            "stroke": "AVC (0 = Non, 1 = Oui)"
+        },
+    title="Âge moyen selon hypertension et AVC"
+    )
+    st.plotly_chart(fig4)
+
+    # Taux d'AVC selon heart_disease et smoking_status
+    rate_data = df.groupby(["heart_disease", "smoking_status"])["stroke"].mean().reset_index()
+    rate_data["stroke"] = rate_data["stroke"] * 100  # en %
+
+    fig5 = px.bar(
+        rate_data,
+        x="smoking_status",
+        y="stroke",
+        color="heart_disease",
+        barmode="group",
+        labels={
+            "stroke": "Taux d'AVC (%)",
+            "smoking_status": "Statut de fumeur",
+            "heart_disease": "Maladie cardiaque (0=Non, 1=Oui)"
+        },
+        title="Taux d'AVC (%) selon maladie cardiaque et tabagisme",
+        text=rate_data["stroke"].round(1)
+    )
+    fig5.update_traces(textposition="outside")
+    st.plotly_chart(fig5)
+
+
+st.markdown("""
+    **Graphique 1 :** affiche le nombre d'AVC par âge, ce qui permet de repérer les tranches d'âges les plus touchées.
+    
+    **Graphique 2 :** montre la proportion globale des personnes ayant eu un AVC (1) ou non (0).
+            
+    **Graphique 3 :**
+    """)
+
+
+
+
