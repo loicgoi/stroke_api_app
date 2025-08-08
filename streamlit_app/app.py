@@ -14,6 +14,7 @@ accueil, donnees, viz, stats = st.tabs(["Accueil", "Données", "Visualisation", 
 
 with accueil:
     st.header("Bienvenue sur l'application Stroke Prediction")
+    st.markdown (("Bienvenue sur l’application de visualisation des données AVC. Cette application vous permet d’explorer les données des patients, visualiser les statistiques clés, et comprendre les facteurs associés aux AVC."))
 
 with donnees:
     st.header("Données")
@@ -74,44 +75,6 @@ with donnees:
             st.warning("Aucun patient ne correspond aux critères sélectionnés.")
 
 with viz:
-    st.header("Graphiques")
-
-with stats:
-    st.header("Stats")
-
-tab1, tab2, tab3, tab4 = st.tabs(["Accueil", "Données", "Visualisations", "Statistiques" ])
-
-with tab1 :
-    st.markdown (("Bienvenue sur l’application de visualisation des données AVC. Cette application vous permet d’explorer les données des patients, visualiser les statistiques clés, et comprendre les facteurs associés aux AVC."))
-
-
-def get_patients_data ():
-    requests.get("http://localhosts:8000/filter_patient/") 
-    return pd.DataFrame(response.json())
-
-with tab2:
-    st.header("Données des patients")
-
-    # Appelle de l'API
-    df = get_filter_patient_data ()
-
-    # Filtrage des données :
-    genre = st.selectbox("Genre", ["All"] + df("gender").unique().tolist())
-    AVC = st.selectbox("AVC", ["All", 0, 1])
-    age_max = st.slider("age_max", int(df["age"].min()), int(df["age"].max()), 60)
-
-    # Application des filtrages
-    if genre != "All":
-        df = df(df("gender") == genre)
-    if AVC != "All":
-        df = df(df("stroke") == AVC)
-    df= df(df("age") == age_max)
-
-    # Affichage
-    st.dataframe(df)
-
-
-with tab3:
     st.header("Visualisations")
 
     # Le taux d'AVC par genre
@@ -202,6 +165,11 @@ st.markdown("""
             
     **Graphique 3 :**
     """)
+
+with stats:
+    st.header("Stats")
+
+
 
 
 
