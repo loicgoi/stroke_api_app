@@ -80,7 +80,6 @@ with viz:
     # Le taux d'AVC par genre
     stroke_by_gender = df.groupby("gender")["stroke"].mean().reset_index()
     stroke_by_gender["stroke"] = stroke_by_gender["stroke"] * 100  # conversion en %
-
     fig1 = px.bar(
         stroke_by_gender,
         x="gender",
@@ -91,6 +90,7 @@ with viz:
     )
     fig1.update_traces(textposition="outside")
     st.plotly_chart(fig1)
+
 
     # Graphique en barres : nombre d'AVC par tranche d'âge
     fig2 = px.bar(
@@ -120,6 +120,7 @@ with viz:
     )
     st.plotly_chart(fig3)
 
+
     # Le lien entre hypertension, âge moyen et AVC
     fig4 = px.bar(
         df.groupby(["hypertension", "stroke"])["age"].mean().reset_index(),
@@ -135,6 +136,7 @@ with viz:
     title="Âge moyen selon hypertension et AVC"
     )
     st.plotly_chart(fig4)
+    
 
     # Taux d'AVC selon heart_disease et smoking_status
     rate_data = df.groupby(["heart_disease", "smoking_status"])["stroke"].mean().reset_index()
