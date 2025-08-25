@@ -5,6 +5,7 @@ import plotly.express as px
 import pandas as pd
 from stroke_api.filters import filter_patient, get_stroke_data
 
+
 st.set_page_config(page_title="Stroke Prediction App", layout="wide")
 
 # Configuration url
@@ -46,37 +47,33 @@ accueil, donnees, viz, stats = st.tabs(
 
 # Accueil
 with accueil:
-    st.title("Détection des AVC")
-
+    st.header("Bienvenue sur l'application Stroke Prediction")
     st.markdown(
-        """
-    Bienvenue dans l'application de détection des AVC (Accidents Vasculaires Cérébraux).
-
-    ---
-    
-    ### Navigation :
-    - **Données** : explorez les patients et appliquez des filtres.
-    - **Statistiques** : consultez les chiffres globaux.
-    - **(À venir) Prédictions** : prédisez le risque d’AVC.
-
-    ---
-    
-    ### Données utilisées :
-    Jeu de données public sur les AVC incluant :
-    - Âge, sexe, antécédents médicaux,
-    - Statut AVC (oui/non).
-
-    Données exposées via une API FastAPI.
-
-    ---
-    
-    Projet réalisé dans le cadre de la formation *Développeur en Intelligence Artificielle* (Simplon, 2025–2026).
-    
-    Technologies : Python · FastAPI · Pandas · Streamlit · REST API
-    """
+        (
+            "Bienvenue sur l’application de visualisation des données AVC. "
+            "Cette application vous permet d’explorer les données des patients, visualiser les statistiques clés, et comprendre les facteurs associés aux AVC."
+        )
     )
 
-# Tableau de données filtrables
+    # Explication des variables
+    if st.button("Description des variables"):
+        st.markdown(
+            """
+    - **gender** : Genre du patient (Male, Female, Other)
+    - **age** : Âge en années
+    - **hypertension** : 1 = hypertension, 0 = non
+    - **heart_disease** : 1 = maladie cardiaque, 0 = non
+    - **ever_married** : Marié ou non
+    - **work_type** : Type d’emploi
+    - **Residence_type** : Urbain ou rural
+    - **avg_glucose_level** : Niveau moyen de glucose
+    - **bmi** : Indice de masse corporelle
+    - **smoking_status** : Habitudes tabagiques
+    - **stroke** : 1 = AVC, 0 = non
+    """
+        )
+
+
 with donnees:
     st.header("Données")
 
@@ -131,33 +128,40 @@ with donnees:
 with viz:
     st.header("Visualisations")
 
-    # Le taux d'AVC par genre
+    #  Graphique 1 : Le taux d'AVC par genre
     stroke_by_gender = df.groupby("gender")["stroke"].mean().reset_index()
-    stroke_by_gender["stroke"] = stroke_by_gender["stroke"] * 100  # conversion en %
+    stroke_by_gender["stroke"] *= 100  # conversion en %
     fig1 = px.bar(
         stroke_by_gender,
         x="gender",
         y="stroke",
         labels={"stroke": "Taux d'AVC (%)", "gender": "Genre"},
-        title="Taux d'AVC en fonction du genre",
+        title="Graphique 1 : Montre le taux d'AVC en fonction du genre.",
         text=stroke_by_gender["stroke"].round(1),  # afficher les % sur les barres
     )
-    fig1.update_traces(textposition="outside")
-    st.plotly_chart(fig1, key="fig1")
+    fig1.update_traces(textposition="outside", marker_line_width=0)
+    st.plotly_chart(fig1)
+    st.markdown(
+        "Graphique 1: On remarque avec ce graphe que les hommes sont subgé a etre touche par l'AVC que les femmes."
+        "Hommes : 51%  -  Femmes : 47%"
+    )
 
-    # Graphique en barres : nombre d'AVC par tranche d'âge
+    # Graphique 2 : Nombre d'AVC par tranche d'âge
     fig2 = px.bar(
         df.groupby("age")["stroke"].sum().reset_index(),
         x="age",
         y="stroke",
-        title="Nombre d'AVC par âge",
+        title="Graphique 2 : Le nombre d'AVC par tranche d'âge.",
         labels={"age": "Âge", "stroke": "Nombre d'AVC"},
         color="stroke",
     )
-    fig2.update_traces(width=0.8)
-    st.plotly_chart(fig2, key="fig2")
+    fig2.update_layout(bargap=0.2)  # réduire l'espace entre les barres
+    st.plotly_chart(fig2)
+    st.markdown(
+        "Graphique 2: Le calcul de la répartition du nombre d'AVC par tranche d'age montre que les personnes ages a partir de 80 ans ont souvent des crises d'AVC"
+    )
 
-    #  Lien entre hypertension, âge moyen et AVC
+    # Graphique 3 : Lien entre hypertension, âge moyen et AVC
     fig3 = px.bar(
         df.groupby(["hypertension", "stroke"])["age"].mean().reset_index(),
         x="hypertension",
@@ -169,31 +173,33 @@ with viz:
             "age": "Âge moyen",
             "stroke": "AVC (0 = Non, 1 = Oui)",
         },
-        title="Âge moyen selon hypertension et AVC",
+        title="Graphique 3 : Âge moyen selon hypertension et AVC.",
     )
-    st.plotly_chart(fig3, key="fig3")
+    st.plotly_chart(fig3)
+    # st.markdown("Graphique 3: " ICI A COMPLETE
 
-    # Le lien entre hypertension, âge moyen et AVC
-    fig4 = px.bar(
-        df.groupby(["hypertension", "stroke"])["age"].mean().reset_index(),
-        x="hypertension",
-        y="age",
-        color="stroke",
-        barmode="group",
-        labels={
-            "hypertension": "Hypertension (0 = Non, 1 = Oui)",
-            "age": "Âge moyen",
-            "stroke": "AVC (0 = Non, 1 = Oui)",
-        },
-        title="Âge moyen selon hypertension et AVC",
+    # Graphique 4 : Répartition des AVC selon les tranches de BMI
+    df["bmi_bin"] = pd.cut(
+        df["bmi"],
+        bins=[0, 18.5, 25, 30, 35, df["bmi"].max()],
+        labels=["Maigreur", "Normal", "Surpoids", "Obésité modérée", "Obésité sévère"],
     )
-    st.plotly_chart(fig4, key="fig4")
+    df_bmi_stroke = df[df["stroke"] == 1]
+    fig4 = px.pie(
+        df_bmi_stroke,
+        names="bmi_bin",
+        title="Répartition des AVC selon les tranches de BMI",
+        hole=0.1,
+        color="bmi_bin",
+        color_discrete_sequence=px.colors.qualitative.Pastel,
+    )
+    st.plotly_chart(fig4)
 
-    # Taux d'AVC selon heart_disease et smoking_status
+    # Graphique 5 : Taux d'AVC selon maladie cardiaque et tabagisme
     rate_data = (
         df.groupby(["heart_disease", "smoking_status"])["stroke"].mean().reset_index()
     )
-    rate_data["stroke"] = rate_data["stroke"] * 100  # en %
+    rate_data["stroke"] *= 100  # en %
 
     fig5 = px.bar(
         rate_data,
@@ -204,27 +210,15 @@ with viz:
         labels={
             "stroke": "Taux d'AVC (%)",
             "smoking_status": "Statut de fumeur",
-            "heart_disease": "Maladie cardiaque (0=Non, 1=Oui)",
+            "heart_disease": "Maladie cardiaque (0 = Non, 1 = Oui)",
         },
-        title="Taux d'AVC (%) selon maladie cardiaque et tabagisme",
+        title="Graphique 5 : Taux d'AVC (%) selon maladie cardiaque et tabagisme.",
         text=rate_data["stroke"].round(1),
     )
     fig5.update_traces(textposition="outside")
-    st.plotly_chart(fig5, key="fig5")
+    st.plotly_chart(fig5)
 
-    st.markdown("**Graphique 5 :** Taux d'AVC selon heart_disease et smoking_status")
 
-st.markdown(
-    """
-    **Graphique 1 :** affiche le nombre d'AVC par âge, ce qui permet de repérer les tranches d'âges les plus touchées.
-    
-    **Graphique 2 :** montre la proportion globale des personnes ayant eu un AVC (1) ou non (0).
-            
-    **Graphique 3 :**
-    """
-)
-
-# Statistique
 with stats:
     st.header("Statistiques")
     data = query_stats()
