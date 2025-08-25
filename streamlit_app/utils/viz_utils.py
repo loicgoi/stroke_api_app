@@ -3,6 +3,26 @@ from collections import Counter
 
 
 def plot_taux_avc(patients):
+    """
+    Crée un graphique en barres représentant le taux d'AVC par genre.
+
+    Args:
+        patients (list of dict): Liste de dictionnaires représentant les patients.
+            Chaque dictionnaire peut contenir les clés "gender" et "stroke".
+
+    Returns:
+        plotly.graph_objects.Figure: Figure Plotly sous forme de bar chart, avec :
+            - x : genres ("Male", "Female", "Unknown", etc.)
+            - y : taux d'AVC (%) pour chaque genre
+            - texte : pourcentage arrondi affiché sur chaque barre
+            - titre : "Taux d'AVC par genre"
+
+    Remarques :
+    - Si le genre d'un patient n'est pas renseigné, "Unknown" est utilisé.
+    - Le taux d'AVC est calculé comme (nombre d'AVC / nombre total de patients du genre) * 100.
+    - La fonction ne modifie pas `st.session_state`; elle se contente de renvoyer la figure Plotly.
+    """
+
     compteur, total = {}, {}
     for p in patients:
         g = p.get("gender", "Unknown")

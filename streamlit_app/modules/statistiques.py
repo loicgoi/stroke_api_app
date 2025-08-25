@@ -1,9 +1,39 @@
 import streamlit as st
 import pandas as pd
 from stroke_api.filters import filter_patient
+from modules.config import API_URL
+
+
+def fetch_stats():
+    try:
+        response = requests.get(f"{API_URL}/stats/")
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        st.error(f"Erreur API : {e}")
+        return None
 
 
 def statistiques():
+    """
+    Affiche les statistiques globales des patients dans l'application Streamlit.
+
+    Fonctionnalités principales :
+    - Récupère tous les patients via la fonction `filter_patient()`.
+    - Calcule et affiche :
+        - Le nombre total de patients
+        - Le nombre d'hommes et de femmes
+        - Le nombre de patients ayant eu un AVC
+        - Le nombre de patients n'ayant pas eu d'AVC
+        - L'âge moyen des patients
+    - Affiche les statistiques sous forme de tableau Streamlit (`st.dataframe`).
+
+    Remarques :
+    - La fonction ne prend pas d'arguments et ne retourne pas de valeur.
+    - Les calculs sont réalisés sur l'ensemble des patients sans filtrage préalable.
+    - Les genres sont considérés comme "male" ou "female" (insensible à la casse).
+    """
+
     st.header("Statistiques")
     patients_all = filter_patient()
     total_patients = len(patients_all)
