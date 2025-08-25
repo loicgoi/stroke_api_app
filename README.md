@@ -126,7 +126,7 @@ Structure du projet
 │ ├── stroke_data.parquet
 │ └── healthcare-dataset-stroke-data.csv
 ├── streamlit_app
-│ ├── **init**.py
+│ ├── __init__.py
 │ ├── app.py
 │ ├── utils
 │ │ ├── data_utils.py
@@ -145,7 +145,7 @@ Structure du projet
 └── stroke_api
 ├── api.py
 ├── main.py
-├── **init**.py
+├── __init__.py
 ├── filters.py
 └── API_tuto.ipynb
 ```
