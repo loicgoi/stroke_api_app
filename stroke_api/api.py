@@ -6,6 +6,13 @@ router = APIRouter()
 
 @router.get("/")
 def read_root():
+    """
+    Route racine de l'API.
+
+    Returns:
+        dict: Message de bienvenue de l'API Stroke Prediction.
+    """
+
     return {"message": "Bienvenue sur l'API Stroke Prediction !"}
 
 
@@ -16,6 +23,23 @@ def get_patients(
     min_age: int = None,
     max_age: int = None,
 ):
+    """
+    Récupère la liste des patients filtrée selon les critères fournis.
+
+    Args:
+        gender (str, optional): Filtrer par genre ("Male", "Female", etc.).
+        stroke (int, optional): Filtrer par AVC (1 pour AVC, 0 sinon).
+        min_age (int, optional): Âge minimum inclus pour le filtre.
+        max_age (int, optional): Âge maximum inclus pour le filtre.
+
+    Returns:
+        list of dict or dict: Liste des patients correspondant aux filtres,
+                              ou message si aucun patient n'est trouvé.
+
+    Remarques :
+    - Utilise la fonction `filter_patient` pour appliquer les filtres.
+    """
+
     filtered = filter_patient(
         gender=gender,
         stroke=stroke,
@@ -29,6 +53,22 @@ def get_patients(
 
 @router.get("/patients/{patient_id}")
 def get_patient_by_id(patient_id: int):
+    """
+    Récupère un patient selon son ID.
+
+    Args:
+        patient_id (int): Identifiant unique du patient.
+
+    Returns:
+        dict: Dictionnaire représentant le patient correspondant à l'ID.
+
+    Raises:
+        HTTPException: Erreur 404 si aucun patient avec l'ID fourni n'est trouvé.
+
+    Remarques :
+    - Retourne le premier (et unique) enregistrement correspondant à l'ID.
+    """
+
     patient = stroke_data_df[stroke_data_df["id"] == patient_id]
     if patient.empty:
         raise HTTPException(status_code=404, detail="Patient non trouvé")
@@ -38,6 +78,21 @@ def get_patient_by_id(patient_id: int):
 
 @router.get("/stats/")
 def get_stats():
+    """
+    Récupère les statistiques globales des patients.
+
+    Returns:
+        dict: Dictionnaire contenant les statistiques suivantes :
+            - total_patients (int): Nombre total de patients
+            - stroke_true (int): Nombre de patients ayant eu un AVC
+            - stroke_false (int): Nombre de patients n'ayant pas eu d'AVC
+            - gender_distribution (dict): Répartition des patients par genre
+            - average_age (float): Âge moyen des patients, arrondi à 2 décimales
+
+    Remarques :
+    - Les calculs sont réalisés sur l'ensemble des patients présents dans `stroke_data_df`.
+    """
+
     total = len(stroke_data_df)
     stroke_true = int(stroke_data_df["stroke"].sum())
     stroke_false = total - stroke_true
