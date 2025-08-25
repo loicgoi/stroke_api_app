@@ -9,7 +9,6 @@ def read_root():
     return {"message": "Bienvenue sur l'API Stroke Prediction !"}
 
 
-# TODO décommenter et compléter
 @router.get("/patients/")
 def get_patients(
     gender: str = None,
@@ -28,7 +27,6 @@ def get_patients(
     return filtered
 
 
-# # TODO décommenter et compléter
 @router.get("/patients/{patient_id}")
 def get_patient_by_id(patient_id: int):
     patient = stroke_data_df[stroke_data_df["id"] == patient_id]
@@ -38,7 +36,6 @@ def get_patient_by_id(patient_id: int):
     # Gérer le cas où l'id de patient passé en paramètre n'existe pas
 
 
-# TODO Ajout de la route stats
 @router.get("/stats/")
 def get_stats():
     total = len(stroke_data_df)

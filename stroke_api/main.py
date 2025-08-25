@@ -8,6 +8,3 @@ app = FastAPI(title="Stroke Dataset API")
 
 # Inclusion des routes définies dans api.py
 app.include_router(router)
-
-
-
