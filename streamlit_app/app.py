@@ -1,247 +1,223 @@
 import streamlit as st
 import pandas as pd
-import requests
 import plotly.express as px
-import pandas as pd
-from stroke_api.filters import filter_patient, get_stroke_data
-
+from collections import Counter
+from stroke_api.filters import filter_patient
 
 st.set_page_config(page_title="Stroke Prediction App", layout="wide")
 
-# Configuration url
-API_BASE = "http://localhost:8000"
-PATIENTS_URL = f"{API_BASE}/patients"
-STATS_URL = f"{API_BASE}/stats"
-
-
-# Fonctions mise en cache des données
-@st.cache_data
-def query_patients(params: dict) -> pd.DataFrame:
-    """Interroge l'endpoint /patients/ avec filtres."""
-    try:
-        response = requests.get(PATIENTS_URL, params=params, timeout=10)
-        response.raise_for_status()
-        return pd.DataFrame(response.json())
-    except requests.exceptions.RequestException as e:
-        st.error(f"Erreur API /patients : {e}")
-        return pd.DataFrame()
-
-
-@st.cache_data
-def query_stats() -> dict:
-    """Interroge l'endpoint /stats/."""
-    try:
-        response = requests.get(STATS_URL, timeout=10)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        st.error(f"Erreur API /stats : {e}")
-        return {}
-
-
-# Onglets
+# --- Onglets ---
 st.title("Stroke Prediction App")
 accueil, donnees, viz, stats = st.tabs(
     ["Accueil", "Données", "Visualisation", "Statistiques"]
 )
 
-# Accueil
+# --- Accueil ---
 with accueil:
     st.header("Bienvenue sur l'application Stroke Prediction")
     st.markdown(
-        (
-            "Bienvenue sur l’application de visualisation des données AVC. "
-            "Cette application vous permet d’explorer les données des patients, visualiser les statistiques clés, et comprendre les facteurs associés aux AVC."
-        )
+        "Explorez les données des patients, visualisez les statistiques clés et comprenez les facteurs associés aux AVC."
     )
 
-    # Explication des variables
     if st.button("Description des variables"):
         st.markdown(
             """
-    - **gender** : Genre du patient (Male, Female, Other)
-    - **age** : Âge en années
-    - **hypertension** : 1 = hypertension, 0 = non
-    - **heart_disease** : 1 = maladie cardiaque, 0 = non
-    - **ever_married** : Marié ou non
-    - **work_type** : Type d’emploi
-    - **Residence_type** : Urbain ou rural
-    - **avg_glucose_level** : Niveau moyen de glucose
-    - **bmi** : Indice de masse corporelle
-    - **smoking_status** : Habitudes tabagiques
-    - **stroke** : 1 = AVC, 0 = non
-    """
+- **gender** : Genre du patient (Male, Female, Other)
+- **age** : Âge en années
+- **hypertension** : 1 = hypertension, 0 = non
+- **heart_disease** : 1 = maladie cardiaque, 0 = non
+- **ever_married** : Marié ou non
+- **work_type** : Type d’emploi
+- **Residence_type** : Urbain ou rural
+- **avg_glucose_level** : Niveau moyen de glucose
+- **bmi** : Indice de masse corporelle
+- **smoking_status** : Habitudes tabagiques
+- **stroke** : 1 = AVC, 0 = non
+"""
         )
 
-
+# --- Données ---
 with donnees:
     st.header("Données")
 
-    # --- Filtres ---
-    patient_id = st.text_input(
-        "ID de patient attendu",
-        key="id",
-        placeholder="Ex : 9032",
-        help="Laissez vide pour filtrer par critères",
-    )
-
+    patient_id = st.text_input("ID de patient", key="id", placeholder="Ex : 9032")
     col1, col2, col3 = st.columns(3)
     selected_gender = col1.selectbox(
-        "Sélectionner un genre", ["Tous", "Male", "Female"], index=0
+        "Sélectionner un genre", ["Tous", "Male", "Female"]
     )
-    selected_stroke = col2.selectbox(
-        "Sélectionner si AVC", ["Tous", "Oui", "Non"], index=0
+    selected_stroke = col2.selectbox("Sélectionner si AVC", ["Tous", "Oui", "Non"])
+    selected_age = col3.slider("Tranche d'âge", 0, 100, (30, 70))
+
+    gender = None if selected_gender == "Tous" else selected_gender
+    stroke = (
+        None if selected_stroke == "Tous" else {"Oui": 1, "Non": 0}[selected_stroke]
     )
-    selected_age = col3.slider("Tranches d'âge", 0, 100, (30, 70), 1)
+    min_age, max_age = selected_age
 
-    # --- Construction params ---
-    params = {}
-    if selected_gender != "Tous":
-        params["gender"] = selected_gender
-    if selected_stroke != "Tous":
-        params["stroke"] = {"Oui": 1, "Non": 0}[selected_stroke]
-    params["min_age"], params["max_age"] = selected_age
-
-    # --- Requête par ID ou par filtres ---
+    # --- Récupération des patients filtrés ---
     if patient_id:
         try:
-            resp = requests.get(f"{PATIENTS_URL}/{int(patient_id)}", timeout=10)
-            resp.raise_for_status()
-            st.dataframe(pd.DataFrame([resp.json()]))
+            patient_id_int = int(patient_id)
+            patients_data = [
+                p for p in filter_patient() if p.get("id") == patient_id_int
+            ]
+            if not patients_data:
+                st.warning("Patient non trouvé.")
         except ValueError:
             st.error("ID invalide.")
-        except requests.exceptions.HTTPError as e:
-            st.warning(
-                "Patient non trouvé." if resp.status_code == 404 else f"Erreur : {e}"
-            )
-        except requests.exceptions.RequestException as e:
-            st.error(f"Erreur de connexion : {e}")
+            patients_data = []
     else:
-        df = query_patients(params)
-        if df.empty:
-            st.warning("Aucun patient ne correspond aux critères.")
-        else:
-            st.dataframe(df)
-            st.markdown(f"**{len(df)} patients trouvés**")
+        patients_data = filter_patient(
+            gender=gender, stroke=stroke, min_age=min_age, max_age=max_age
+        )
 
-# Graphiques
+    if not patients_data:
+        st.warning("Aucun patient ne correspond aux critères.")
+    else:
+        st.dataframe(patients_data)
+        st.markdown(f"**{len(patients_data)} patients trouvés**")
+
+
+# --- Fonctions cache pour graphiques ---
+@st.cache_data
+def calc_taux_avc(patients):
+    compteur, total = {}, {}
+    for p in patients:
+        g = p.get("gender", "Unknown")
+        compteur[g] = compteur.get(g, 0) + p.get("stroke", 0)
+        total[g] = total.get(g, 0) + 1
+    return {g: compteur[g] / total[g] * 100 for g in compteur}
+
+
+@st.cache_data
+def calc_avc_par_age(patients):
+    return Counter(p["age"] for p in patients if p.get("stroke") == 1)
+
+
+@st.cache_data
+def calc_avc_par_imc(patients):
+    def imc_bin(bmi):
+        if bmi < 18.5:
+            return "Maigreur"
+        elif bmi < 25:
+            return "Normal"
+        elif bmi < 30:
+            return "Surpoids"
+        elif bmi < 35:
+            return "Obésité modérée"
+        else:
+            return "Obésité sévère"
+
+    return Counter(imc_bin(p.get("bmi", 0)) for p in patients if p.get("stroke") == 1)
+
+
+@st.cache_data
+def calc_avc_maladie_tabac(patients):
+    rate_data = {}
+    for p in patients:
+        key = (p.get("heart_disease", 0), p.get("smoking_status", "Unknown"))
+        if key not in rate_data:
+            rate_data[key] = {"stroke_sum": 0, "count": 0}
+        rate_data[key]["stroke_sum"] += p.get("stroke", 0)
+        rate_data[key]["count"] += 1
+    return [
+        {
+            "heart_disease": k[0],
+            "smoking_status": k[1],
+            "stroke": v["stroke_sum"] / v["count"] * 100,
+        }
+        for k, v in rate_data.items()
+    ]
+
+
+# --- Visualisations ---
 with viz:
     st.header("Visualisations")
 
-    #  Graphique 1 : Le taux d'AVC par genre
-    stroke_by_gender = df.groupby("gender")["stroke"].mean().reset_index()
-    stroke_by_gender["stroke"] *= 100  # conversion en %
-    fig1 = px.bar(
-        stroke_by_gender,
-        x="gender",
-        y="stroke",
-        labels={"stroke": "Taux d'AVC (%)", "gender": "Genre"},
-        title="Graphique 1 : Montre le taux d'AVC en fonction du genre.",
-        text=stroke_by_gender["stroke"].round(1),  # afficher les % sur les barres
-    )
-    fig1.update_traces(textposition="outside", marker_line_width=0)
-    st.plotly_chart(fig1)
-    st.markdown(
-        "On remarque avec ce graphe que les hommes sont plus susceptibles d'être touchés par un AVC que les femmes. "
-        "Hommes : 51%  -  Femmes : 47%"
-    )
+    if not patients_data:
+        st.info("Aucune donnée disponible pour les graphiques.")
+    else:
+        # Taux d'AVC par genre
+        taux_avc = calc_taux_avc(patients_data)
+        fig1 = px.bar(
+            x=list(taux_avc.keys()),
+            y=list(taux_avc.values()),
+            labels={"x": "Genre", "y": "Taux d'AVC (%)"},
+            text=[round(v, 1) for v in taux_avc.values()],
+            title="Taux d'AVC par genre",
+        )
+        fig1.update_traces(textposition="outside")
+        st.plotly_chart(fig1)
 
-    # Graphique 2 : Nombre d'AVC par tranche d'âge
-    fig2 = px.bar(
-        df.groupby("age")["stroke"].sum().reset_index(),
-        x="age",
-        y="stroke",
-        title="Graphique 2 : Le nombre d'AVC par tranche d'âge.",
-        labels={"age": "Âge", "stroke": "Nombre d'AVC"},
-        color="stroke",
-    )
-    fig2.update_layout(bargap=0.2)  # réduire l'espace entre les barres
-    st.plotly_chart(fig2)
-    st.markdown(
-        "Calcul de la répartition du nombre d'AVC par tranche d'âge. Ce graphique montre que les personnes ont un plus grand risque d'AVC à partir de 80 ans"
-    )
+        # Nombre d'AVC par tranche d'âge
+        age_count = calc_avc_par_age(patients_data)
+        fig2 = px.bar(
+            x=list(age_count.keys()),
+            y=list(age_count.values()),
+            labels={"x": "Âge", "y": "Nombre d'AVC"},
+            title="Nombre d'AVC par âge",
+        )
+        st.plotly_chart(fig2)
 
-    # Graphique 3 : Lien entre hypertension, âge moyen et AVC
-    fig3 = px.bar(
-        df.groupby(["hypertension", "stroke"])["age"].mean().reset_index(),
-        x="hypertension",
-        y="age",
-        color="stroke",
-        barmode="group",
-        labels={
-            "hypertension": "Hypertension (0 = Non, 1 = Oui)",
-            "age": "Âge moyen",
-            "stroke": "AVC (0 = Non, 1 = Oui)",
-        },
-        title="Graphique 3 : Âge moyen selon l'hypertension et AVC.",
-    )
-    st.plotly_chart(fig3)
+        # Répartition des AVC selon IMC
+        imc_count = calc_avc_par_imc(patients_data)
+        fig3 = px.pie(
+            names=list(imc_count.keys()),
+            values=list(imc_count.values()),
+            title="Répartition des AVC selon IMC",
+            hole=0.1,
+            color=list(imc_count.keys()),
+            color_discrete_sequence=px.colors.qualitative.Pastel,
+        )
+        st.plotly_chart(fig3)
 
-    # Graphique 4 : Répartition des AVC selon les catégories d'IMC'
-    df["bmi_bin"] = pd.cut(
-        df["bmi"],
-        bins=[0, 18.5, 25, 30, 35, df["bmi"].max()],
-        labels=["Maigreur", "Normal", "Surpoids", "Obésité modérée", "Obésité sévère"],
-    )
-    df_bmi_stroke = df[df["stroke"] == 1]
-    fig4 = px.pie(
-        df_bmi_stroke,
-        names="bmi_bin",
-        title="Répartition des AVC selon les catégories d'IMC",
-        hole=0.1,
-        color="bmi_bin",
-        color_discrete_sequence=px.colors.qualitative.Pastel,
-    )
-    st.plotly_chart(fig4)
-    st.markdown(
-        "Répartition des AVC selon la catégorie d'IMC. Ce graphique montre que les personnes avec un IMC à partir de modéré ont un plus grand risque d'AVC. Ce risque augmente plus la catégorie d'IMC est élevée."
-    )
+        # AVC selon maladie cardiaque et tabagisme
+        rate_list = calc_avc_maladie_tabac(patients_data)
+        fig4 = px.bar(
+            rate_list,
+            x="smoking_status",
+            y="stroke",
+            color="heart_disease",
+            barmode="group",
+            text=[round(d["stroke"], 1) for d in rate_list],
+            labels={
+                "stroke": "Taux d'AVC (%)",
+                "smoking_status": "Statut fumeur",
+                "heart_disease": "Maladie cardiaque",
+            },
+        )
+        fig4.update_traces(textposition="outside")
+        st.plotly_chart(fig4)
 
-    # Graphique 5 : Taux d'AVC selon maladie cardiaque et tabagisme
-    rate_data = (
-        df.groupby(["heart_disease", "smoking_status"])["stroke"].mean().reset_index()
-    )
-    rate_data["stroke"] *= 100  # en %
-
-    fig5 = px.bar(
-        rate_data,
-        x="smoking_status",
-        y="stroke",
-        color="heart_disease",
-        barmode="group",
-        labels={
-            "stroke": "Taux d'AVC (%)",
-            "smoking_status": "Statut de fumeur",
-            "heart_disease": "Maladie cardiaque (0 = Non, 1 = Oui)",
-        },
-        title="Graphique 5 : Taux d'AVC (%) selon maladie cardiaque et tabagisme.",
-        text=rate_data["stroke"].round(1),
-    )
-    fig5.update_traces(textposition="outside")
-    st.plotly_chart(fig5)
-    st.markdown(
-        "Ce graphique montre le lien possible entre tabagisme / maladie cardiaque et le risque d'AVC. Plus la personne fume et à eu un problème cardiaque, plus le risque d'AVC est avéré."
-    )
-
-
+# --- Statistiques ---
 with stats:
     st.header("Statistiques")
-    data = query_stats()
-    if not data:
-        st.stop()
+    patients_all = filter_patient()
+    total_patients = len(patients_all)
 
-    gender = data.pop("gender_distribution", {})
-    flat = {**data, **gender}
-    labels = {
-        "total_patients": "Total patients",
-        "stroke_true": "Patients avec AVC",
-        "stroke_false": "Patients sans AVC",
-        "average_age": "Âge moyen",
-        "Male": "Hommes",
-        "Female": "Femmes",
-    }
+    # Compteurs AVC
+    stroke_true = sum(p["stroke"] for p in patients_all)
+    stroke_false = total_patients - stroke_true
+
+    # Âge moyen
+    avg_age = (
+        round(sum(p["age"] for p in patients_all) / total_patients, 2)
+        if total_patients
+        else 0
+    )
+
+    # Compteurs par genre
+    nb_hommes = sum(1 for p in patients_all if p["gender"].lower() == "male")
+    nb_femmes = sum(1 for p in patients_all if p["gender"].lower() == "female")
+
     rows = [
-        (labels.get(k, k), round(v, 2) if isinstance(v, float) else v)
-        for k, v in flat.items()
+        ("Total patients", total_patients),
+        ("Hommes", nb_hommes),
+        ("Femmes", nb_femmes),
+        ("Patients avec AVC", stroke_true),
+        ("Patients sans AVC", stroke_false),
+        ("Âge moyen", avg_age),
     ]
-    st.dataframe(pd.DataFrame(rows, columns=["Statistique", "Valeur"]))
+
+    stats_df = pd.DataFrame(rows, columns=["Statistique", "Valeur"])
+    st.dataframe(stats_df)
