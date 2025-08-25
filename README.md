@@ -1,14 +1,4 @@
-Stroke data project
-===================
-
-Ce projet contient les fichiers nécessaires au brief Stroke data - Développement d'une API REST et visualisation.
-
-
-Voici un exemple clair et structuré de `README.md` pour ton projet dans VSCode, basé sur tout ce que tu as partagé :
-
----
-
-#  Stroke Prediction Dataset - API REST avec FastAPI
+# Stroke Prediction Dataset - API REST avec FastAPI
 
 ## Objectif du projet
 
@@ -18,10 +8,10 @@ Développer une API REST permettant d'exposer les données patients d’un datas
 
 ## Dataset utilisé
 
-* **Source** : [Kaggle - Stroke Prediction Dataset]
-* **Description** : Informations médicales et sociales sur des patients, avec comme objectif de prédire les risques d’AVC (stroke).
+- **Source** : [Kaggle - Stroke Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset)
+- **Description** : Informations médicales et sociales sur des patients, avec comme objectif de prédire les risques d’AVC (stroke).
 
-###  Colonnes du dataset
+### Colonnes du dataset
 
 | Colonne             | Description                                      |
 | ------------------- | ------------------------------------------------ |
@@ -38,78 +28,72 @@ Développer une API REST permettant d'exposer les données patients d’un datas
 | `smoking_status`    | Statut tabagique                                 |
 | `stroke`            | Présence d’AVC (0 = Non, 1 = Oui)                |
 
-📥 **Télécharger les données** et les placer dans le dossier `data/`.
+**Télécharger les données** et les placer dans le dossier `data/`.
 
 ---
 
-##  Prétraitement des données
+## Prétraitement des données
 
-### Étapes réalisées :
+### Étapes réalisées
 
-* Suppression des doublons
-* Traitement des valeurs manquantes dans la colonne `bmi` via médiane conditionnelle (par genre, âge, résidence, etc.)
-* Correction des valeurs aberrantes (incohérentes) :
-
-  * `work_type` pour les < 18 ans → `children`
-  * `smoking_status` inconnu :
-
-    * < 18 ans → `never smoked`
-    * ≥ 18 ans → `not specified`
-* Détection des outliers :
-
-  * `avg_glucose_level` < 50 ou > 280
-  * `bmi` < 10 ou > 80
-* Sauvegarde des données nettoyées au format **Parquet** dans `data/stroke_data.parquet`
+- Suppression des doublons
+- Traitement des valeurs manquantes dans la colonne `bmi` via médiane conditionnelle
+- Correction des valeurs aberrantes :
+  - `work_type` pour les < 18 ans → `children`
+  - `smoking_status` inconnu :
+    - < 18 ans → `never smoked`
+    - ≥ 18 ans → `not specified`
+- Détection des outliers :
+  - `avg_glucose_level` < 50 ou > 280
+  - `bmi` < 10 ou > 80
+- Sauvegarde des données nettoyées au format **Parquet** dans `data/stroke_data.parquet`
 
 ### Pourquoi Parquet ?
 
-* Format compressé, léger, optimisé pour le Big Data
-* Conserve les types de données
-* Très utile pour des traitements performants sur gros volumes
+- Format compressé, léger et optimisé pour le Big Data
+- Conserve les types de données
+- Très performant pour des traitements sur gros volumes
+
+---
 
 ## Fonctionnalités de l’API REST
 
 Développée avec **FastAPI** + **Uvicorn**
 
-| Méthode | Endpoint                                      | Description                                                               |
-| ------: | --------------------------------------------- | ------------------------------------------------------------------------- |
-|   `GET` | `/patients/{id}`                              | Retourne les infos d’un patient par son `id`                              |
-|   `GET` | `/patients?stroke=1&gender=Female&max_age=60` | Filtre les patients par critères                                          |
-|   `GET` | `/stats/`                                     | Statistiques globales : âge moyen, taux d’AVC, répartition hommes/femmes… |
+| Méthode | Endpoint                                      | Description                                                              |
+| ------- | --------------------------------------------- | ------------------------------------------------------------------------ |
+| `GET`   | `/patients/{id}`                              | Retourne les infos d’un patient par son `id`                             |
+| `GET`   | `/patients?stroke=1&gender=Female&max_age=60` | Filtre les patients par critères                                         |
+| `GET`   | `/stats/`                                     | Statistiques globales : âge moyen, taux d’AVC, répartition hommes/femmes |
 
-Documentation interactive générée automatiquement par Swagger UI :
-Accès via [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-
----
-
-##  Outils utilisés
-
-| Outil       | Description                                                   |
-| ----------- | ------------------------------------------------------------- |
-| **FastAPI** | Framework Python pour API REST, rapide et typé                |
-| **Uvicorn** | Serveur ASGI pour exécuter FastAPI                            |
-| **Swagger** | Documentation interactive générée automatiquement par FastAPI |
-| **Pandas**  | Manipulation des données pour le prétraitement                |
-| **Poetry**  | Gestionnaire d'environnement Python + dépendances             |
-
----
-
-##  Lancer le projet
-
-```bash
-poetry run fastapi dev stroke_api/main.py
-```
-
-📍 Accès à la documentation Swagger UI :
+Documentation interactive générée automatiquement par Swagger UI :  
 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ---
 
-##  Fonctions de filtrage
+## Outils utilisés
+
+| Outil       | Description                                       |
+| ----------- | ------------------------------------------------- |
+| **FastAPI** | Framework Python pour API REST, rapide et typé    |
+| **Uvicorn** | Serveur ASGI pour exécuter FastAPI                |
+| **Swagger** | Documentation interactive générée automatiquement |
+| **Pandas**  | Manipulation des données pour le prétraitement    |
+| **Poetry**  | Gestionnaire d'environnement Python + dépendances |
+
+---
+
+## Lancer le projet
+
+```bash
+poetry install
+poetry run uvicorn stroke_api.main:app --reload
+
+Fonctions de filtrage (exemple)
+from typing import Optional
+```
 
 ```python
-from typing import Optional
-
 def filter_patient(
     gender: Optional[str] = None,
     stroke: Optional[int] = None,
@@ -125,60 +109,57 @@ def filter_patient(
     return df.to_dict('records')
 ```
 
----
+Tâches restantes
 
-## Tâches restantes (à suivre sur GitHub Issues)
+- [ ] Ajouter la route `/patients/{id}`
+- [ ] Gérer les erreurs (404 si patient non trouvé, etc.)
+- [ ] Ajouter des tests unitaires
+- [ ] Créer un Dockerfile pour containeriser l’API
 
-* [ ] Ajouter la route `/patients/{id}`
-* [ ] Ajouter la route `/stats/` avec calculs :
-
-  * âge moyen
-  * taux d’AVC
-  * répartition par genre
-* [ ] Gérer les erreurs (404 si patient non trouvé, etc.)
-* [ ] Ajouter des tests unitaires
-* [ ] Créer un `Dockerfile` pour containeriser l’API
-* [ ] Créer des branches par feature (`feature/route-stats`, `feature/id-route`, etc.)
-
----
-
-##  Quelques définitions
-
-### 🔁 Qu’est-ce qu’une API REST ?
-
-* Une **API (Application Programming Interface)** permet à des logiciels de communiquer.
-* **REST (Representational State Transfer)** est un style d’architecture d’API.
-
-###  Principes REST
-
-* Protocole HTTP (`GET`, `POST`, `PUT`, `DELETE`)
-* Représentations en JSON
-* URLs claires pour accéder aux ressources
-* Stateless : aucune mémoire des requêtes précédentes
-* Codes HTTP (200, 404, etc.) pour indiquer le résultat
-
----
-
-##  Structure du projet
-
-```
-stroke_api/
-│
-├── data/
-│   └── stroke_data.parquet          # Données prétraitées
-├─API_tuto.ipnyb                     # Exécutions des fontions 
-├── filters.py                       # Fonctions de filtrage
-├── main.py                          # Fichier principal FastAPI
-├── utils.py                         # Fonctions utilitaires (si besoin)
-├── README.md                        # Explications des requetes qui sont réalisé
+```markdown
+Structure du projet
+├── .gitignore
+├── poetry.lock
+├── pyproject.toml
+├── README.md
+├── data
+│ ├── stroke_data.parquet
+│ └── healthcare-dataset-stroke-data.csv
+├── streamlit_app
+│ ├── **init**.py
+│ ├── app.py
+│ ├── utils
+│ │ ├── data_utils.py
+│ │ ├── viz_utils.py
+│ │ └── stats_utils.py
+│ ├── modules
+│ │ ├── visualisations.py
+│ │ ├── statistiques.py
+│ │ ├── accueil.py
+│ │ ├── config.py
+│ │ └── donnees.py
+│ ├── .streamlit
+│ │ └── config.toml
+│ └── components
+│ └── description_variables.py
+└── stroke_api
+├── api.py
+├── main.py
+├── **init**.py
+├── filters.py
+└── API_tuto.ipynb
 ```
 
----
+Contribution
 
-##  Contribution
+- Forker ce repo
 
-* Forker ce repo
-* Créer une branche : `feature/<nom>`
-* Créer une issue correspondante
-* Soumettre une Pull Request claire
+- Créer une branche : feature/<nom>
 
+- Créer une issue correspondante
+
+- Soumettre une Pull Request claire
+
+```
+
+```
