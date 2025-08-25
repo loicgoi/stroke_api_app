@@ -142,7 +142,7 @@ with viz:
     fig1.update_traces(textposition="outside", marker_line_width=0)
     st.plotly_chart(fig1)
     st.markdown(
-        "Graphique 1: On remarque avec ce graphe que les hommes sont subgé a etre touche par l'AVC que les femmes."
+        "On remarque avec ce graphe que les hommes sont plus susceptibles d'être touchés par un AVC que les femmes. "
         "Hommes : 51%  -  Femmes : 47%"
     )
 
@@ -158,7 +158,7 @@ with viz:
     fig2.update_layout(bargap=0.2)  # réduire l'espace entre les barres
     st.plotly_chart(fig2)
     st.markdown(
-        "Graphique 2: Le calcul de la répartition du nombre d'AVC par tranche d'age montre que les personnes ages a partir de 80 ans ont souvent des crises d'AVC"
+        "Calcul de la répartition du nombre d'AVC par tranche d'âge. Ce graphique montre que les personnes ont un plus grand risque d'AVC à partir de 80 ans"
     )
 
     # Graphique 3 : Lien entre hypertension, âge moyen et AVC
@@ -173,12 +173,11 @@ with viz:
             "age": "Âge moyen",
             "stroke": "AVC (0 = Non, 1 = Oui)",
         },
-        title="Graphique 3 : Âge moyen selon hypertension et AVC.",
+        title="Graphique 3 : Âge moyen selon l'hypertension et AVC.",
     )
     st.plotly_chart(fig3)
-    # st.markdown("Graphique 3: " ICI A COMPLETE
 
-    # Graphique 4 : Répartition des AVC selon les tranches de BMI
+    # Graphique 4 : Répartition des AVC selon les catégories d'IMC'
     df["bmi_bin"] = pd.cut(
         df["bmi"],
         bins=[0, 18.5, 25, 30, 35, df["bmi"].max()],
@@ -188,12 +187,15 @@ with viz:
     fig4 = px.pie(
         df_bmi_stroke,
         names="bmi_bin",
-        title="Répartition des AVC selon les tranches de BMI",
+        title="Répartition des AVC selon les catégories d'IMC",
         hole=0.1,
         color="bmi_bin",
         color_discrete_sequence=px.colors.qualitative.Pastel,
     )
     st.plotly_chart(fig4)
+    st.markdown(
+        "Répartition des AVC selon la catégorie d'IMC. Ce graphique montre que les personnes avec un IMC à partir de modéré ont un plus grand risque d'AVC. Ce risque augmente plus la catégorie d'IMC est élevée."
+    )
 
     # Graphique 5 : Taux d'AVC selon maladie cardiaque et tabagisme
     rate_data = (
@@ -217,6 +219,9 @@ with viz:
     )
     fig5.update_traces(textposition="outside")
     st.plotly_chart(fig5)
+    st.markdown(
+        "Ce graphique montre le lien possible entre tabagisme / maladie cardiaque et le risque d'AVC. Plus la personne fume et à eu un problème cardiaque, plus le risque d'AVC est avéré."
+    )
 
 
 with stats:
