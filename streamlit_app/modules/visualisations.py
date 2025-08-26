@@ -4,7 +4,7 @@ from collections import Counter
 
 
 @st.cache_data
-def calc_taux_avc(patients):
+def calc_taux_avc(patients) -> dict:
     """
     Calcule le taux d'AVC par genre à partir d'une liste de patients.
 
@@ -30,7 +30,7 @@ def calc_taux_avc(patients):
 
 
 @st.cache_data
-def calc_avc_par_age(patients):
+def calc_avc_par_age(patients) -> int:
     """
     Compte le nombre de patients ayant eu un AVC par âge.
 
@@ -50,7 +50,7 @@ def calc_avc_par_age(patients):
 
 
 @st.cache_data
-def calc_avc_par_imc(patients):
+def calc_avc_par_imc(patients) -> int:
     """
     Compte le nombre de patients ayant eu un AVC selon les catégories d'IMC.
 
@@ -87,7 +87,7 @@ def calc_avc_par_imc(patients):
 
 
 @st.cache_data
-def calc_avc_maladie_tabac(patients):
+def calc_avc_maladie_tabac(patients) -> int:
     """
     Calcule le taux d'AVC en fonction de la présence de maladie cardiaque et du statut tabagique.
 

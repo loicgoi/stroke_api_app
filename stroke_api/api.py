@@ -5,7 +5,7 @@ router = APIRouter()
 
 
 @router.get("/")
-def read_root():
+def read_root() -> dict:
     """
     Route racine de l'API.
 
@@ -22,7 +22,7 @@ def get_patients(
     stroke: int = None,
     min_age: int = None,
     max_age: int = None,
-):
+) -> dict:
     """
     Récupère la liste des patients filtrée selon les critères fournis.
 
@@ -52,7 +52,7 @@ def get_patients(
 
 
 @router.get("/patients/{patient_id}")
-def get_patient_by_id(patient_id: int):
+def get_patient_by_id(patient_id: int) -> dict:
     """
     Récupère un patient selon son ID.
 
@@ -77,7 +77,7 @@ def get_patient_by_id(patient_id: int):
 
 
 @router.get("/stats/")
-def get_stats():
+def get_stats() -> dict:
     """
     Récupère les statistiques globales des patients.
 
