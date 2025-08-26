@@ -30,7 +30,7 @@ def calc_taux_avc(patients) -> dict:
 
 
 @st.cache_data
-def calc_avc_par_age(patients) -> int:
+def calc_avc_par_age(patients) -> Counter:
     """
     Compte le nombre de patients ayant eu un AVC par âge.
 
@@ -50,7 +50,7 @@ def calc_avc_par_age(patients) -> int:
 
 
 @st.cache_data
-def calc_avc_par_imc(patients) -> int:
+def calc_avc_par_imc(patients) -> Counter:
     """
     Compte le nombre de patients ayant eu un AVC selon les catégories d'IMC.
 
@@ -145,59 +145,99 @@ def visualisations():
 
     st.header("Visualisations")
     patients_data = st.session_state.get("patients_data", [])
-
     if not patients_data:
         st.info("Veuillez d'abord sélectionner des patients dans l'onglet Données.")
         return
 
-    # Taux d'AVC par genre
+    # --- 1. Taux d'AVC par genre (bar chart horizontal)
     taux_avc = calc_taux_avc(patients_data)
     fig1 = px.bar(
-        x=list(taux_avc.keys()),
-        y=list(taux_avc.values()),
-        labels={"x": "Genre", "y": "Taux d'AVC (%)"},
+        {"Genre": list(taux_avc.keys()), "Taux d'AVC (%)": list(taux_avc.values())},
+        x="Taux d'AVC (%)",
+        y="Genre",
+        orientation="h",
         text=[round(v, 1) for v in taux_avc.values()],
         title="Taux d'AVC par genre",
     )
     fig1.update_traces(textposition="outside")
     st.plotly_chart(fig1)
 
-    # Nombre d'AVC par âge
-    age_count = calc_avc_par_age(patients_data)
-    fig2 = px.bar(
-        x=list(age_count.keys()),
-        y=list(age_count.values()),
-        labels={"x": "Âge", "y": "Nombre d'AVC"},
-        title="Nombre d'AVC par âge",
+    # --- 2. Nombre d'AVC par âge (histogramme)
+    ages = [p["age"] for p in patients_data if p.get("stroke") == 1]
+    fig2 = px.histogram(
+        ages,
+        nbins=20,
+        labels={"value": "Âge", "count": "Nombre d'AVC"},
+        title="Distribution des AVC par âge",
     )
     st.plotly_chart(fig2)
 
-    # Répartition des AVC selon IMC
+    # --- 3. Répartition des AVC selon IMC (bar chart)
     imc_count = calc_avc_par_imc(patients_data)
-    fig3 = px.pie(
-        names=list(imc_count.keys()),
-        values=list(imc_count.values()),
+    fig3 = px.bar(
+        {
+            "Catégorie IMC": list(imc_count.keys()),
+            "Nombre d'AVC": list(imc_count.values()),
+        },
+        x="Catégorie IMC",
+        y="Nombre d'AVC",
+        text=[v for v in imc_count.values()],
         title="Répartition des AVC selon IMC",
-        hole=0.1,
-        color=list(imc_count.keys()),
+        color="Catégorie IMC",
         color_discrete_sequence=px.colors.qualitative.Pastel,
     )
+    fig3.update_traces(textposition="outside")
     st.plotly_chart(fig3)
 
-    # AVC selon maladie cardiaque et tabac
+    # --- 4. AVC selon maladie cardiaque et tabac (heatmap)
     rate_list = calc_avc_maladie_tabac(patients_data)
-    fig4 = px.bar(
-        rate_list,
-        x="smoking_status",
-        y="stroke",
-        color="heart_disease",
-        barmode="group",
-        text=[round(d["stroke"], 1) for d in rate_list],
+
+    # Préparer les axes et la matrice des valeurs
+    smoking_statuses = sorted(list(set(d["smoking_status"] for d in rate_list)))
+    heart_diseases = [0, 1]  # 0 = pas de maladie cardiaque, 1 = maladie cardiaque
+    z_matrix = []
+
+    for hd in heart_diseases:
+        row = []
+        for ss in smoking_statuses:
+            # Chercher le taux correspondant
+            val = next(
+                (
+                    d["stroke"]
+                    for d in rate_list
+                    if d["heart_disease"] == hd and d["smoking_status"] == ss
+                ),
+                0,
+            )
+            row.append(val)
+        z_matrix.append(row)
+
+    fig4 = px.imshow(
+        z_matrix,
+        x=smoking_statuses,
+        y=["Sans maladie cardiaque", "Avec maladie cardiaque"],
         labels={
-            "stroke": "Taux d'AVC (%)",
-            "smoking_status": "Statut fumeur",
-            "heart_disease": "Maladie cardiaque",
+            "x": "Statut fumeur",
+            "y": "Maladie cardiaque",
+            "color": "Taux d'AVC (%)",
         },
+        color_continuous_scale="Reds",
+        text_auto=True,
+        title="Taux d'AVC selon maladie cardiaque et statut tabac",
     )
-    fig4.update_traces(textposition="outside")
+
     st.plotly_chart(fig4)
+
+    # --- 5. Scatter IMC vs Âge pour AVC avec 2 couleurs distinctes
+    scatter_data = [p for p in patients_data if p.get("stroke") == 1]
+    fig5 = px.scatter(
+        scatter_data,
+        x="age",
+        y="bmi",
+        color="gender",
+        color_discrete_map={"Male": "blue", "Female": "red", "Unknown": "gray"},
+        labels={"age": "Âge", "bmi": "IMC", "gender": "Genre"},
+        title="IMC vs Âge des patients ayant eu un AVC",
+        hover_data=["stroke"],
+    )
+    st.plotly_chart(fig5)
