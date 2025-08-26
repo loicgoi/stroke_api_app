@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 from stroke_api.filters import filter_patient
 from modules.config import API_URL
 
@@ -188,6 +189,8 @@ def donnees():
         patients_data = filter_patient(
             gender=gender, stroke=stroke, min_age=min_age, max_age=max_age
         )
+
+    st.session_state["patients_data"] = patients_data
 
     # Affichage
     if not patients_data:

@@ -4,9 +4,21 @@ url = "https://fonts.gstatic.com/s/notosans/v36/o-0IIpQlx3QUlC5A4PNr5TRA.woff2"
 style = "normal"
 weight = "400"
 
+[[theme.fontFaces]]
+family = "Noto Sans"
+url = "https://fonts.gstatic.com/s/notosans/v36/o-0IIpQlx3QUlC5A4PNr5TRA.woff2"
+style = "normal"
+weight = "700"
+
 [theme]
 primaryColor = "#1F77B4"
 backgroundColor = "#2F2F2F"          
 secondaryBackgroundColor = "#5D5D5D"
 textColor = "#E8EAED"
 font = "Noto Sans, sans serif"
+
+
+[theme.sidebar]
+backgroundColor = "#2F2F2F"  # sombre comme l'app
+textColor = "#E8EAED"        # clair
+primaryColor = "#1F77B4"     # boutons dans sidebar

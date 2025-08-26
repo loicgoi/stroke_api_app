@@ -21,10 +21,8 @@ st.set_page_config(page_title="Stroke Prediction App", layout="wide")
 # with tab4:
 #     statistiques.statistiques()
 
-st.sidebar.title("Navigation")
-page = st.sidebar.radio(
-    "Aller à :", ["Accueil", "Données", "Visualisation", "Statistiques"]
-)
+st.sidebar.title("Menu")
+page = st.sidebar.radio("", ["Accueil", "Données", "Visualisation", "Statistiques"])
 
 st.sidebar.markdown("---")
 st.sidebar.info("Stroke Prediction App")
