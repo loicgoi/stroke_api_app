@@ -119,35 +119,49 @@ Tâches restantes
 ```markdown
 Structure du projet
 ├── .gitignore
+├── mkdocs.yml
 ├── poetry.lock
 ├── pyproject.toml
 ├── README.md
+├── stroke_api
+│   ├── api.py
+│   ├── main.py
+│   ├── __init__.py
+│   ├── filters.py
+│   └── API_tuto.ipynb
 ├── data
-│ ├── stroke_data.parquet
-│ └── healthcare-dataset-stroke-data.csv
-├── streamlit_app
-│ ├── __init__.py
-│ ├── app.py
-│ ├── utils
-│ │ ├── data_utils.py
-│ │ ├── viz_utils.py
-│ │ └── stats_utils.py
-│ ├── modules
-│ │ ├── visualisations.py
-│ │ ├── statistiques.py
-│ │ ├── accueil.py
-│ │ ├── config.py
-│ │ └── donnees.py
-│ ├── .streamlit
-│ │ └── config.toml
-│ └── components
-│ └── description_variables.py
-└── stroke_api
-├── api.py
-├── main.py
-├── __init__.py
-├── filters.py
-└── API_tuto.ipynb
+│   ├── stroke_data.parquet
+│   └── healthcare-dataset-stroke-data.csv
+├── docs
+│   ├── index.md
+│   ├── donnees.md
+│   ├── api
+│   │   ├── index.md
+│   │   ├── filters.md
+│   │   └── api.md
+│   ├── streamlit
+│   │   ├── index.md
+│   │   ├── utils.md
+│   │   └── modules.md
+└── streamlit_app
+    ├── __init__.py
+    ├── app.py
+    ├── utils
+    │   ├── data_utils.py
+    │   ├── __init__.py
+    │   ├── viz_utils.py
+    │   └── stats_utils.py
+    ├── modules
+    │   ├── visualisations.py
+    │   ├── __init__.py
+    │   ├── statistiques.py
+    │   ├── accueil.py
+    │   ├── config.py
+    │   └── donnees.py
+    ├── .streamlit
+    │   └── config.toml
+    └── components
+        └── description_variables.py
 ```
 
 Contribution
