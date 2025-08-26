@@ -159,7 +159,3 @@ Contribution
 - Créer une issue correspondante
 
 - Soumettre une Pull Request claire
-
-```
-
-```

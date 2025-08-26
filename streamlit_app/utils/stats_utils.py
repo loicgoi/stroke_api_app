@@ -2,6 +2,42 @@ import pandas as pd
 
 
 def get_global_stats(patients_all):
+    """
+    Calcule et retourne des statistiques globales à partir d'une liste de patients.
+
+    Cette fonction analyse les données d'une liste de patients et calcule :
+    - le nombre total de patients,
+    - le nombre d'hommes et de femmes,
+    - le nombre de patients ayant eu un AVC et ceux n'en ayant pas eu,
+    - l'âge moyen des patients.
+
+    Parameters
+    ----------
+    patients_all : list of dict
+        Liste de dictionnaires représentant les patients. Chaque dictionnaire doit
+        contenir au moins les clés `"age"`, `"gender"` et `"stroke"`.
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame Pandas contenant les statistiques globales avec deux colonnes :
+        `"Statistique"` et `"Valeur"`.
+
+    Examples
+    --------
+    >>> patients = [
+    ...     {"age": 60, "gender": "Male", "stroke": 1},
+    ...     {"age": 45, "gender": "Female", "stroke": 0}
+    ... ]
+    >>> get_global_stats(patients)
+                Statistique  Valeur
+    0       Total patients    2
+    1                Hommes    1
+    2               Femmes    1
+    3     Patients avec AVC    1
+    4  Patients sans AVC    1
+    5             Âge moyen   52.5
+    """
     total_patients = len(patients_all)
     stroke_true = sum(p["stroke"] for p in patients_all)
     stroke_false = total_patients - stroke_true
