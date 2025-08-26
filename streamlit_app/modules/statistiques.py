@@ -5,6 +5,20 @@ from modules.config import API_URL
 
 
 def fetch_stats():
+    """
+    Récupère les statistiques depuis l'API et retourne les données au format JSON.
+
+    Effectue une requête GET vers l'endpoint `/stats/` de l'API définie par `API_URL`.
+    Si la requête est réussie, la réponse est convertie en dictionnaire Python via `response.json()`.
+    En cas d'erreur (connexion, statut HTTP invalide, etc.), un message d'erreur est affiché
+    dans Streamlit et la fonction retourne `None`.
+
+    Returns
+    -------
+    dict | None
+        Un dictionnaire contenant les statistiques si la requête réussit,
+        sinon `None` en cas d'erreur.
+    """
     try:
         response = requests.get(f"{API_URL}/stats/")
         response.raise_for_status()

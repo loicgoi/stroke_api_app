@@ -4,6 +4,36 @@ from modules.config import API_URL
 
 
 def fetch_patients(gender=None, stroke=None, min_age=0, max_age=100):
+    """
+    Récupère la liste des patients depuis l'API avec des filtres optionnels.
+
+    Effectue une requête GET vers l'endpoint `/patients/` de l'API définie par `API_URL`,
+    en passant des paramètres de filtrage tels que le sexe, la présence d'AVC et une
+    plage d'âge. Si la requête réussit, retourne les données JSON.
+    En cas d'erreur ou si l'API renvoie un message d'information, retourne une liste vide.
+
+    Parameters
+    ----------
+    gender : str, optional
+        Sexe du patient à filtrer (`"Male"`, `"Female"`, `"Other"`).
+        Par défaut : `None` (pas de filtre).
+    stroke : int | bool, optional
+        Indicateur de présence d'AVC (`1` ou `True` = AVC, `0` ou `False` = pas d'AVC).
+        Par défaut : `None` (pas de filtre).
+    min_age : int, optional
+        Âge minimum des patients à récupérer.
+        Par défaut : `0`.
+    max_age : int, optional
+        Âge maximum des patients à récupérer.
+        Par défaut : `100`.
+
+    Returns
+    -------
+    list
+        Liste de dictionnaires représentant les patients filtrés.
+        Retourne `[]` si aucun patient ne correspond ou en cas d'erreur.
+
+    """
     params = {
         "gender": gender,
         "stroke": stroke,
@@ -23,6 +53,28 @@ def fetch_patients(gender=None, stroke=None, min_age=0, max_age=100):
 
 
 def fetch_patient_by_id(patient_id):
+    """
+    Récupère les informations d’un patient spécifique depuis l’API à partir de son identifiant.
+
+    Effectue une requête GET vers l’endpoint `/patients/{patient_id}` de l’API définie
+    par `API_URL`.
+    - Si la requête réussit, retourne les données JSON du patient.
+    - Si l’identifiant n’existe pas (404), un avertissement est affiché dans Streamlit
+      et la fonction retourne `None`.
+    - En cas d’autres erreurs (connexion, statut HTTP invalide, etc.), un message d’erreur
+      est affiché et la fonction retourne `None`.
+
+    Parameters
+    ----------
+    patient_id : str | int
+        Identifiant unique du patient à récupérer.
+
+    Returns
+    -------
+    dict | None
+        Un dictionnaire contenant les informations du patient si la requête réussit,
+        sinon `None` en cas d’erreur ou si le patient n’existe pas.
+    """
     try:
         response = requests.get(f"{API_URL}/patients/{patient_id}")
         response.raise_for_status()
@@ -64,7 +116,7 @@ def donnees():
 
     st.header("Données")
 
-    # --- Bouton Reset ---
+    # Bouton Reset
     if st.button("Réinitialiser les filtres"):
         for key in [
             "patient_id",
@@ -75,13 +127,13 @@ def donnees():
         ]:
             if key in st.session_state:
                 del st.session_state[key]
-        st.rerun()  # recharge la page avec valeurs par défaut
+        st.rerun()
 
-    # ID du patient
+    # Widgets
     patient_id = st.text_input(
         "ID de patient",
-        key="patient_id",  # clé explicite
-        value=st.session_state.get("patient_id", ""),  # garder la saisie précédente
+        value=st.session_state.get("patient_id", ""),
+        key="patient_id",
         placeholder="Ex : 9032",
     )
 
@@ -90,37 +142,37 @@ def donnees():
     selected_gender = col1.selectbox(
         "Sélectionner un genre",
         ["Tous", "Male", "Female"],
-        key="selected_gender",
         index=["Tous", "Male", "Female"].index(
             st.session_state.get("selected_gender", "Tous")
         ),
+        key="selected_gender",
     )
 
     selected_stroke = col2.selectbox(
         "Sélectionner si AVC",
         ["Tous", "Oui", "Non"],
-        key="selected_stroke",
         index=["Tous", "Oui", "Non"].index(
             st.session_state.get("selected_stroke", "Tous")
         ),
+        key="selected_stroke",
     )
 
     selected_age = col3.slider(
         "Tranche d'âge",
         0,
         100,
-        st.session_state.get("selected_age", (30, 70)),  # valeur précédente ou défaut
+        value=st.session_state.get("selected_age", (30, 70)),
         key="selected_age",
     )
 
-    # Conversion en filtres
+    # Conversion filtres
     gender = None if selected_gender == "Tous" else selected_gender
     stroke = (
         None if selected_stroke == "Tous" else {"Oui": 1, "Non": 0}[selected_stroke]
     )
     min_age, max_age = selected_age
 
-    # --- Récupération des patients filtrés ---
+    # Récupération patients filtrés
     if patient_id:
         try:
             patient_id_int = int(patient_id)
@@ -137,11 +189,9 @@ def donnees():
             gender=gender, stroke=stroke, min_age=min_age, max_age=max_age
         )
 
+    # Affichage
     if not patients_data:
         st.warning("Aucun patient ne correspond aux critères.")
     else:
         st.dataframe(patients_data)
         st.markdown(f"**{len(patients_data)} patients trouvés**")
-
-    # Sauvegarde pour les autres pages
-    st.session_state["patients_data"] = patients_data
