@@ -1,0 +1,2893 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation complète du projet Prediction Stroke App">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../utils/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Modules - Prediction Stroke App</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modules-streamlit" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Prediction Stroke App" class="md-header__button md-logo" aria-label="Prediction Stroke App" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Prediction Stroke App
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Prediction Stroke App" class="md-nav__button md-logo" aria-label="Prediction Stroke App" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Prediction Stroke App
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../donnees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Données
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Streamlit App
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Streamlit App
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Modules
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modules
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accueil" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accueil
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.accueil" class="md-nav__link">
+    <span class="md-ellipsis">
+      accueil
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.accueil.accueil" class="md-nav__link">
+    <span class="md-ellipsis">
+      accueil
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.config" class="md-nav__link">
+    <span class="md-ellipsis">
+      config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Données
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      donnees
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      donnees
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patient_by_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_patient_by_id
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="fetch_patient_by_id">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patient_by_id--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patient_by_id--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patients" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_patients
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="fetch_patients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patients--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patients--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualisations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      visualisations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_avc_maladie_tabac" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_avc_maladie_tabac
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_avc_par_age" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_avc_par_age
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_avc_par_imc" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_avc_par_imc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_taux_avc" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_taux_avc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.visualisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      visualisations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Statistiques
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      statistiques
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques.fetch_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_stats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="fetch_stats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques.fetch_stats--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques.statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      statistiques
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accueil" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accueil
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.accueil" class="md-nav__link">
+    <span class="md-ellipsis">
+      accueil
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.accueil.accueil" class="md-nav__link">
+    <span class="md-ellipsis">
+      accueil
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.config" class="md-nav__link">
+    <span class="md-ellipsis">
+      config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Données
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      donnees
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      donnees
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patient_by_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_patient_by_id
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="fetch_patient_by_id">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patient_by_id--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patient_by_id--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patients" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_patients
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="fetch_patients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patients--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.donnees.fetch_patients--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualisations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      visualisations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_avc_maladie_tabac" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_avc_maladie_tabac
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_avc_par_age" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_avc_par_age
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_avc_par_imc" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_avc_par_imc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.calc_taux_avc" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_taux_avc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.visualisations.visualisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      visualisations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Statistiques
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      statistiques
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques.fetch_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_stats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="fetch_stats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques.fetch_stats--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamlit_app.modules.statistiques.statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      statistiques
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="modules-streamlit">Modules Streamlit</h1>
+<h2 id="accueil">Accueil</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="streamlit_app.modules.accueil"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.accueil.accueil" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">accueil</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Affiche la page d'accueil de l'application Stroke Prediction.</p>
+<p>Fonctionnalités principales :
+- Affiche un en-tête de bienvenue.
+- Fournit un texte introductif expliquant l'objectif de l'application :
+    explorer les données patients, visualiser les statistiques clés et comprendre
+    les facteurs associés aux AVC.
+- Propose un bouton "Description des variables" :
+    - Lorsqu'il est cliqué, appelle la fonction <code>show_description()</code> pour afficher
+      les détails des variables des patients.</p>
+<p>Remarques :
+- La fonction ne prend pas d'arguments et ne retourne aucune valeur.
+- Elle repose sur Streamlit pour l'affichage interactif.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/accueil.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">accueil</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Affiche la page d&#39;accueil de l&#39;application Stroke Prediction.</span>
+
+<span class="sd">    Fonctionnalités principales :</span>
+<span class="sd">    - Affiche un en-tête de bienvenue.</span>
+<span class="sd">    - Fournit un texte introductif expliquant l&#39;objectif de l&#39;application :</span>
+<span class="sd">        explorer les données patients, visualiser les statistiques clés et comprendre</span>
+<span class="sd">        les facteurs associés aux AVC.</span>
+<span class="sd">    - Propose un bouton &quot;Description des variables&quot; :</span>
+<span class="sd">        - Lorsqu&#39;il est cliqué, appelle la fonction `show_description()` pour afficher</span>
+<span class="sd">          les détails des variables des patients.</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - La fonction ne prend pas d&#39;arguments et ne retourne aucune valeur.</span>
+<span class="sd">    - Elle repose sur Streamlit pour l&#39;affichage interactif.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;Bienvenue sur l&#39;application Stroke Prediction&quot;</span><span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span>
+        <span class="s2">&quot;Explorez les données des patients, visualisez les statistiques clés et comprenez les facteurs associés aux AVC.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Description des variables&quot;</span><span class="p">):</span>
+        <span class="n">show_description</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="config">Config</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="streamlit_app.modules.config"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="donnees">Données</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="streamlit_app.modules.donnees"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.donnees.donnees" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">donnees</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Affiche et gère l'interface de sélection des données patients dans l'application Streamlit.</p>
+<p>Fonctionnalités principales :
+- Affiche un en-tête "Données".
+- Permet de filtrer les patients selon plusieurs critères :
+    - ID du patient (champ texte)
+    - Genre ("Tous", "Male", "Female")
+    - Présence d'AVC ("Tous", "Oui", "Non")
+    - Tranche d'âge (slider)
+- Bouton de réinitialisation ("Réinitialiser les filtres") qui supprime les filtres et recharge la page.
+- Filtre les données des patients à partir de la fonction <code>filter_patient()</code> selon les critères sélectionnés.
+- Affiche les résultats filtrés dans un tableau Streamlit (<code>st.dataframe</code>) et le nombre de patients trouvés.
+- Gère les erreurs :
+    - ID patient non valide
+    - Aucun patient correspondant aux critères
+- Sauvegarde les résultats filtrés dans <code>st.session_state["patients_data"]</code> pour utilisation dans d'autres pages de l'application.</p>
+<p>Remarques :
+- Les filtres "Tous" correspondent à l'absence de filtrage pour ce critère.
+- La fonction repose sur <code>st.session_state</code> pour conserver les sélections entre les rechargements de la page.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/donnees.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">donnees</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Affiche et gère l&#39;interface de sélection des données patients dans l&#39;application Streamlit.</span>
+
+<span class="sd">    Fonctionnalités principales :</span>
+<span class="sd">    - Affiche un en-tête &quot;Données&quot;.</span>
+<span class="sd">    - Permet de filtrer les patients selon plusieurs critères :</span>
+<span class="sd">        - ID du patient (champ texte)</span>
+<span class="sd">        - Genre (&quot;Tous&quot;, &quot;Male&quot;, &quot;Female&quot;)</span>
+<span class="sd">        - Présence d&#39;AVC (&quot;Tous&quot;, &quot;Oui&quot;, &quot;Non&quot;)</span>
+<span class="sd">        - Tranche d&#39;âge (slider)</span>
+<span class="sd">    - Bouton de réinitialisation (&quot;Réinitialiser les filtres&quot;) qui supprime les filtres et recharge la page.</span>
+<span class="sd">    - Filtre les données des patients à partir de la fonction `filter_patient()` selon les critères sélectionnés.</span>
+<span class="sd">    - Affiche les résultats filtrés dans un tableau Streamlit (`st.dataframe`) et le nombre de patients trouvés.</span>
+<span class="sd">    - Gère les erreurs :</span>
+<span class="sd">        - ID patient non valide</span>
+<span class="sd">        - Aucun patient correspondant aux critères</span>
+<span class="sd">    - Sauvegarde les résultats filtrés dans `st.session_state[&quot;patients_data&quot;]` pour utilisation dans d&#39;autres pages de l&#39;application.</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - Les filtres &quot;Tous&quot; correspondent à l&#39;absence de filtrage pour ce critère.</span>
+<span class="sd">    - La fonction repose sur `st.session_state` pour conserver les sélections entre les rechargements de la page.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;Données&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Bouton Reset</span>
+    <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Réinitialiser les filtres&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;patient_id&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;selected_gender&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;selected_stroke&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;selected_age&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;patients_data&quot;</span><span class="p">,</span>
+        <span class="p">]:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">rerun</span><span class="p">()</span>
+
+    <span class="c1"># Widgets</span>
+    <span class="n">patient_id</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span>
+        <span class="s2">&quot;ID de patient&quot;</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;patient_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;patient_id&quot;</span><span class="p">,</span>
+        <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ex : 9032&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">,</span> <span class="n">col3</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">selected_gender</span> <span class="o">=</span> <span class="n">col1</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span>
+        <span class="s2">&quot;Sélectionner un genre&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;Tous&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">],</span>
+        <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Tous&quot;</span><span class="p">,</span> <span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;selected_gender&quot;</span><span class="p">,</span> <span class="s2">&quot;Tous&quot;</span><span class="p">)</span>
+        <span class="p">),</span>
+        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;selected_gender&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">selected_stroke</span> <span class="o">=</span> <span class="n">col2</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span>
+        <span class="s2">&quot;Sélectionner si AVC&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;Tous&quot;</span><span class="p">,</span> <span class="s2">&quot;Oui&quot;</span><span class="p">,</span> <span class="s2">&quot;Non&quot;</span><span class="p">],</span>
+        <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Tous&quot;</span><span class="p">,</span> <span class="s2">&quot;Oui&quot;</span><span class="p">,</span> <span class="s2">&quot;Non&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;selected_stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;Tous&quot;</span><span class="p">)</span>
+        <span class="p">),</span>
+        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;selected_stroke&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">selected_age</span> <span class="o">=</span> <span class="n">col3</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span>
+        <span class="s2">&quot;Tranche d&#39;âge&quot;</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="mi">100</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;selected_age&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">)),</span>
+        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;selected_age&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Conversion filtres</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">selected_gender</span> <span class="o">==</span> <span class="s2">&quot;Tous&quot;</span> <span class="k">else</span> <span class="n">selected_gender</span>
+    <span class="n">stroke</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="kc">None</span> <span class="k">if</span> <span class="n">selected_stroke</span> <span class="o">==</span> <span class="s2">&quot;Tous&quot;</span> <span class="k">else</span> <span class="p">{</span><span class="s2">&quot;Oui&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Non&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}[</span><span class="n">selected_stroke</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">min_age</span><span class="p">,</span> <span class="n">max_age</span> <span class="o">=</span> <span class="n">selected_age</span>
+
+    <span class="c1"># Récupération patients filtrés</span>
+    <span class="k">if</span> <span class="n">patient_id</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">patient_id_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">patient_id</span><span class="p">)</span>
+            <span class="n">patients_data</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">filter_patient</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">patient_id_int</span>
+            <span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">patients_data</span><span class="p">:</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Patient non trouvé.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;ID invalide.&quot;</span><span class="p">)</span>
+            <span class="n">patients_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">patients_data</span> <span class="o">=</span> <span class="n">filter_patient</span><span class="p">(</span>
+            <span class="n">gender</span><span class="o">=</span><span class="n">gender</span><span class="p">,</span> <span class="n">stroke</span><span class="o">=</span><span class="n">stroke</span><span class="p">,</span> <span class="n">min_age</span><span class="o">=</span><span class="n">min_age</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="n">max_age</span>
+        <span class="p">)</span>
+
+    <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s2">&quot;patients_data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">patients_data</span>
+
+    <span class="c1"># Affichage</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">patients_data</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Aucun patient ne correspond aux critères.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">patients_data</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;**</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">patients_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> patients trouvés**&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.donnees.fetch_patient_by_id" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_patient_by_id</span><span class="p">(</span><span class="n">patient_id</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Récupère les informations d’un patient spécifique depuis l’API à partir de son identifiant.</p>
+<p>Effectue une requête GET vers l’endpoint <code>/patients/{patient_id}</code> de l’API définie
+par <code>API_URL</code>.
+- Si la requête réussit, retourne les données JSON du patient.
+- Si l’identifiant n’existe pas (404), un avertissement est affiché dans Streamlit
+  et la fonction retourne <code>None</code>.
+- En cas d’autres erreurs (connexion, statut HTTP invalide, etc.), un message d’erreur
+  est affiché et la fonction retourne <code>None</code>.</p>
+<h4 id="streamlit_app.modules.donnees.fetch_patient_by_id--parameters">Parameters</h4>
+<p>patient_id : str | int
+    Identifiant unique du patient à récupérer.</p>
+<h4 id="streamlit_app.modules.donnees.fetch_patient_by_id--returns">Returns</h4>
+<p>dict | None
+    Un dictionnaire contenant les informations du patient si la requête réussit,
+    sinon <code>None</code> en cas d’erreur ou si le patient n’existe pas.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/donnees.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_patient_by_id</span><span class="p">(</span><span class="n">patient_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Récupère les informations d’un patient spécifique depuis l’API à partir de son identifiant.</span>
+
+<span class="sd">    Effectue une requête GET vers l’endpoint `/patients/{patient_id}` de l’API définie</span>
+<span class="sd">    par `API_URL`.</span>
+<span class="sd">    - Si la requête réussit, retourne les données JSON du patient.</span>
+<span class="sd">    - Si l’identifiant n’existe pas (404), un avertissement est affiché dans Streamlit</span>
+<span class="sd">      et la fonction retourne `None`.</span>
+<span class="sd">    - En cas d’autres erreurs (connexion, statut HTTP invalide, etc.), un message d’erreur</span>
+<span class="sd">      est affiché et la fonction retourne `None`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    patient_id : str | int</span>
+<span class="sd">        Identifiant unique du patient à récupérer.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict | None</span>
+<span class="sd">        Un dictionnaire contenant les informations du patient si la requête réussit,</span>
+<span class="sd">        sinon `None` en cas d’erreur ou si le patient n’existe pas.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/patients/</span><span class="si">{</span><span class="n">patient_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Patient non trouvé.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Erreur API : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Erreur API : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.donnees.fetch_patients" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_patients</span><span class="p">(</span><span class="n">gender</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stroke</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_age</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Récupère la liste des patients depuis l'API avec des filtres optionnels.</p>
+<p>Effectue une requête GET vers l'endpoint <code>/patients/</code> de l'API définie par <code>API_URL</code>,
+en passant des paramètres de filtrage tels que le sexe, la présence d'AVC et une
+plage d'âge. Si la requête réussit, retourne les données JSON.
+En cas d'erreur ou si l'API renvoie un message d'information, retourne une liste vide.</p>
+<h4 id="streamlit_app.modules.donnees.fetch_patients--parameters">Parameters</h4>
+<p>gender : str, optional
+    Sexe du patient à filtrer (<code>"Male"</code>, <code>"Female"</code>, <code>"Other"</code>).
+    Par défaut : <code>None</code> (pas de filtre).
+stroke : int | bool, optional
+    Indicateur de présence d'AVC (<code>1</code> ou <code>True</code> = AVC, <code>0</code> ou <code>False</code> = pas d'AVC).
+    Par défaut : <code>None</code> (pas de filtre).
+min_age : int, optional
+    Âge minimum des patients à récupérer.
+    Par défaut : <code>0</code>.
+max_age : int, optional
+    Âge maximum des patients à récupérer.
+    Par défaut : <code>100</code>.</p>
+<h4 id="streamlit_app.modules.donnees.fetch_patients--returns">Returns</h4>
+<p>list
+    Liste de dictionnaires représentant les patients filtrés.
+    Retourne <code>[]</code> si aucun patient ne correspond ou en cas d'erreur.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/donnees.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_patients</span><span class="p">(</span><span class="n">gender</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stroke</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_age</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Récupère la liste des patients depuis l&#39;API avec des filtres optionnels.</span>
+
+<span class="sd">    Effectue une requête GET vers l&#39;endpoint `/patients/` de l&#39;API définie par `API_URL`,</span>
+<span class="sd">    en passant des paramètres de filtrage tels que le sexe, la présence d&#39;AVC et une</span>
+<span class="sd">    plage d&#39;âge. Si la requête réussit, retourne les données JSON.</span>
+<span class="sd">    En cas d&#39;erreur ou si l&#39;API renvoie un message d&#39;information, retourne une liste vide.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    gender : str, optional</span>
+<span class="sd">        Sexe du patient à filtrer (`&quot;Male&quot;`, `&quot;Female&quot;`, `&quot;Other&quot;`).</span>
+<span class="sd">        Par défaut : `None` (pas de filtre).</span>
+<span class="sd">    stroke : int | bool, optional</span>
+<span class="sd">        Indicateur de présence d&#39;AVC (`1` ou `True` = AVC, `0` ou `False` = pas d&#39;AVC).</span>
+<span class="sd">        Par défaut : `None` (pas de filtre).</span>
+<span class="sd">    min_age : int, optional</span>
+<span class="sd">        Âge minimum des patients à récupérer.</span>
+<span class="sd">        Par défaut : `0`.</span>
+<span class="sd">    max_age : int, optional</span>
+<span class="sd">        Âge maximum des patients à récupérer.</span>
+<span class="sd">        Par défaut : `100`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        Liste de dictionnaires représentant les patients filtrés.</span>
+<span class="sd">        Retourne `[]` si aucun patient ne correspond ou en cas d&#39;erreur.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;gender&quot;</span><span class="p">:</span> <span class="n">gender</span><span class="p">,</span>
+        <span class="s2">&quot;stroke&quot;</span><span class="p">:</span> <span class="n">stroke</span><span class="p">,</span>
+        <span class="s2">&quot;min_age&quot;</span><span class="p">:</span> <span class="n">min_age</span><span class="p">,</span>
+        <span class="s2">&quot;max_age&quot;</span><span class="p">:</span> <span class="n">max_age</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/patients/&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s2">&quot;message&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">data</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Erreur API : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="visualisations">Visualisations</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="streamlit_app.modules.visualisations"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.visualisations.calc_avc_maladie_tabac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calc_avc_maladie_tabac</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Calcule le taux d'AVC en fonction de la présence de maladie cardiaque et du statut tabagique.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>patients</code>
+            </td>
+            <td>
+                  <code>list of dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Liste de dictionnaires représentant les patients.
+Chaque dictionnaire peut contenir les clés "heart_disease", "smoking_status" et "stroke".</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>list of dict: Liste de dictionnaires avec les clés suivantes :
+- "heart_disease" : 0 ou 1
+- "smoking_status" : statut du patient ("Unknown" si non renseigné)
+- "stroke" : pourcentage de patients ayant eu un AVC dans ce groupe</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Remarques :
+- Les résultats sont regroupés par combinaison (maladie cardiaque, statut tabac).
+- La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/visualisations.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_avc_maladie_tabac</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcule le taux d&#39;AVC en fonction de la présence de maladie cardiaque et du statut tabagique.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        patients (list of dict): Liste de dictionnaires représentant les patients.</span>
+<span class="sd">            Chaque dictionnaire peut contenir les clés &quot;heart_disease&quot;, &quot;smoking_status&quot; et &quot;stroke&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list of dict: Liste de dictionnaires avec les clés suivantes :</span>
+<span class="sd">            - &quot;heart_disease&quot; : 0 ou 1</span>
+<span class="sd">            - &quot;smoking_status&quot; : statut du patient (&quot;Unknown&quot; si non renseigné)</span>
+<span class="sd">            - &quot;stroke&quot; : pourcentage de patients ayant eu un AVC dans ce groupe</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - Les résultats sont regroupés par combinaison (maladie cardiaque, statut tabac).</span>
+<span class="sd">    - La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rate_data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;heart_disease&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;smoking_status&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rate_data</span><span class="p">:</span>
+            <span class="n">rate_data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;stroke_sum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="n">rate_data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s2">&quot;stroke_sum&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">rate_data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;heart_disease&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;smoking_status&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s2">&quot;stroke&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;stroke_sum&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">rate_data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.visualisations.calc_avc_par_age" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calc_avc_par_age</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compte le nombre de patients ayant eu un AVC par âge.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>patients</code>
+            </td>
+            <td>
+                  <code>list of dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Liste de dictionnaires représentant les patients.
+Chaque dictionnaire doit contenir les clés "age" et "stroke".</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="collections.Counter">Counter</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>collections.Counter: Compteur des AVC par âge, uniquement pour les patients
+                 ayant eu un AVC (stroke == 1).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Remarques :
+- Les âges des patients sans AVC sont ignorés.
+- La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/visualisations.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_avc_par_age</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Counter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compte le nombre de patients ayant eu un AVC par âge.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        patients (list of dict): Liste de dictionnaires représentant les patients.</span>
+<span class="sd">            Chaque dictionnaire doit contenir les clés &quot;age&quot; et &quot;stroke&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        collections.Counter: Compteur des AVC par âge, uniquement pour les patients</span>
+<span class="sd">                             ayant eu un AVC (stroke == 1).</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - Les âges des patients sans AVC sont ignorés.</span>
+<span class="sd">    - La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.visualisations.calc_avc_par_imc" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calc_avc_par_imc</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compte le nombre de patients ayant eu un AVC selon les catégories d'IMC.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>patients</code>
+            </td>
+            <td>
+                  <code>list of dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Liste de dictionnaires représentant les patients.
+Chaque dictionnaire doit contenir les clés "bmi" et "stroke".</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="collections.Counter">Counter</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>collections.Counter: Compteur des AVC par catégorie d'IMC :
+- "Maigreur" : IMC &lt; 18.5
+- "Normal" : 18.5 &lt;= IMC &lt; 25
+- "Surpoids" : 25 &lt;= IMC &lt; 30
+- "Obésité modérée" : 30 &lt;= IMC &lt; 35
+- "Obésité sévère" : IMC &gt;= 35</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Remarques :
+- Seuls les patients ayant eu un AVC (stroke == 1) sont comptés.
+- La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/visualisations.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_avc_par_imc</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Counter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compte le nombre de patients ayant eu un AVC selon les catégories d&#39;IMC.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        patients (list of dict): Liste de dictionnaires représentant les patients.</span>
+<span class="sd">            Chaque dictionnaire doit contenir les clés &quot;bmi&quot; et &quot;stroke&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        collections.Counter: Compteur des AVC par catégorie d&#39;IMC :</span>
+<span class="sd">            - &quot;Maigreur&quot; : IMC &lt; 18.5</span>
+<span class="sd">            - &quot;Normal&quot; : 18.5 &lt;= IMC &lt; 25</span>
+<span class="sd">            - &quot;Surpoids&quot; : 25 &lt;= IMC &lt; 30</span>
+<span class="sd">            - &quot;Obésité modérée&quot; : 30 &lt;= IMC &lt; 35</span>
+<span class="sd">            - &quot;Obésité sévère&quot; : IMC &gt;= 35</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - Seuls les patients ayant eu un AVC (stroke == 1) sont comptés.</span>
+<span class="sd">    - La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">imc_bin</span><span class="p">(</span><span class="n">bmi</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">bmi</span> <span class="o">&lt;</span> <span class="mf">18.5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Maigreur&quot;</span>
+        <span class="k">elif</span> <span class="n">bmi</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Normal&quot;</span>
+        <span class="k">elif</span> <span class="n">bmi</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Surpoids&quot;</span>
+        <span class="k">elif</span> <span class="n">bmi</span> <span class="o">&lt;</span> <span class="mi">35</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Obésité modérée&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Obésité sévère&quot;</span>
+
+    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">imc_bin</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bmi&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.visualisations.calc_taux_avc" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calc_taux_avc</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Calcule le taux d'AVC par genre à partir d'une liste de patients.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>patients</code>
+            </td>
+            <td>
+                  <code>list of dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Liste de dictionnaires représentant les patients.
+Chaque dictionnaire peut contenir les clés "gender" et "stroke".</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>dict</code></td>            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Un dictionnaire où chaque clé est un genre ("Male", "Female", etc.)
+  et chaque valeur est le pourcentage de patients ayant eu un AVC pour ce genre.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+        <p>Remarques :
+- La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.
+- Si le genre d'un patient n'est pas renseigné, "Unknown" est utilisé.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/visualisations.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_taux_avc</span><span class="p">(</span><span class="n">patients</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcule le taux d&#39;AVC par genre à partir d&#39;une liste de patients.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        patients (list of dict): Liste de dictionnaires représentant les patients.</span>
+<span class="sd">            Chaque dictionnaire peut contenir les clés &quot;gender&quot; et &quot;stroke&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Un dictionnaire où chaque clé est un genre (&quot;Male&quot;, &quot;Female&quot;, etc.)</span>
+<span class="sd">              et chaque valeur est le pourcentage de patients ayant eu un AVC pour ce genre.</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - La fonction utilise le caching de Streamlit (@st.cache_data) pour optimiser les performances.</span>
+<span class="sd">    - Si le genre d&#39;un patient n&#39;est pas renseigné, &quot;Unknown&quot; est utilisé.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">compteur</span><span class="p">,</span> <span class="n">total</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">)</span>
+        <span class="n">compteur</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">=</span> <span class="n">compteur</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">total</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">=</span> <span class="n">total</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">g</span><span class="p">:</span> <span class="n">compteur</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">/</span> <span class="n">total</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">compteur</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.visualisations.visualisations" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">visualisations</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Affiche les visualisations statistiques des données patients dans l'application Streamlit.</p>
+<p>Fonctionnalités principales :
+- Vérifie que des patients ont été sélectionnés dans <code>st.session_state["patients_data"]</code>.
+- Crée quatre visualisations avec Plotly :
+    1. Taux d'AVC par genre (bar chart)
+    2. Nombre d'AVC par âge (bar chart)
+    3. Répartition des AVC selon les catégories d'IMC (pie chart)
+    4. Taux d'AVC selon la présence de maladie cardiaque et le statut tabagique (bar chart groupé)
+- Affiche les graphiques directement dans l'application Streamlit.
+- Si aucun patient n'est sélectionné, affiche un message d'information.</p>
+<p>Remarques :
+- Les calculs utilisent les fonctions <code>calc_taux_avc</code>, <code>calc_avc_par_age</code>,
+  <code>calc_avc_par_imc</code> et <code>calc_avc_maladie_tabac</code> avec caching pour optimiser les performances.
+- Les graphiques sont interactifs grâce à Plotly.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/visualisations.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">visualisations</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Affiche les visualisations statistiques des données patients dans l&#39;application Streamlit.</span>
+
+<span class="sd">    Fonctionnalités principales :</span>
+<span class="sd">    - Vérifie que des patients ont été sélectionnés dans `st.session_state[&quot;patients_data&quot;]`.</span>
+<span class="sd">    - Crée quatre visualisations avec Plotly :</span>
+<span class="sd">        1. Taux d&#39;AVC par genre (bar chart)</span>
+<span class="sd">        2. Nombre d&#39;AVC par âge (bar chart)</span>
+<span class="sd">        3. Répartition des AVC selon les catégories d&#39;IMC (pie chart)</span>
+<span class="sd">        4. Taux d&#39;AVC selon la présence de maladie cardiaque et le statut tabagique (bar chart groupé)</span>
+<span class="sd">    - Affiche les graphiques directement dans l&#39;application Streamlit.</span>
+<span class="sd">    - Si aucun patient n&#39;est sélectionné, affiche un message d&#39;information.</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - Les calculs utilisent les fonctions `calc_taux_avc`, `calc_avc_par_age`,</span>
+<span class="sd">      `calc_avc_par_imc` et `calc_avc_maladie_tabac` avec caching pour optimiser les performances.</span>
+<span class="sd">    - Les graphiques sont interactifs grâce à Plotly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;Visualisations&quot;</span><span class="p">)</span>
+    <span class="n">patients_data</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;patients_data&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">patients_data</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Veuillez d&#39;abord sélectionner des patients dans l&#39;onglet Données.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># --- 1. Taux d&#39;AVC par genre (bar chart horizontal)</span>
+    <span class="n">taux_avc</span> <span class="o">=</span> <span class="n">calc_taux_avc</span><span class="p">(</span><span class="n">patients_data</span><span class="p">)</span>
+    <span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;Genre&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">taux_avc</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="s2">&quot;Taux d&#39;AVC (%)&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">taux_avc</span><span class="o">.</span><span class="n">values</span><span class="p">())},</span>
+        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Taux d&#39;AVC (%)&quot;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Genre&quot;</span><span class="p">,</span>
+        <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">taux_avc</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Taux d&#39;AVC par genre&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fig1</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">plotly_chart</span><span class="p">(</span><span class="n">fig1</span><span class="p">)</span>
+
+    <span class="c1"># --- 2. Nombre d&#39;AVC par âge (histogramme)</span>
+    <span class="n">ages</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients_data</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">fig2</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+        <span class="n">ages</span><span class="p">,</span>
+        <span class="n">nbins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Âge&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;Nombre d&#39;AVC&quot;</span><span class="p">},</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Distribution des AVC par âge&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">plotly_chart</span><span class="p">(</span><span class="n">fig2</span><span class="p">)</span>
+
+    <span class="c1"># --- 3. Répartition des AVC selon IMC (bar chart)</span>
+    <span class="n">imc_count</span> <span class="o">=</span> <span class="n">calc_avc_par_imc</span><span class="p">(</span><span class="n">patients_data</span><span class="p">)</span>
+    <span class="n">fig3</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;Catégorie IMC&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">imc_count</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+            <span class="s2">&quot;Nombre d&#39;AVC&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">imc_count</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+        <span class="p">},</span>
+        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Catégorie IMC&quot;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Nombre d&#39;AVC&quot;</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">imc_count</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Répartition des AVC selon IMC&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Catégorie IMC&quot;</span><span class="p">,</span>
+        <span class="n">color_discrete_sequence</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">qualitative</span><span class="o">.</span><span class="n">Pastel</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fig3</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">plotly_chart</span><span class="p">(</span><span class="n">fig3</span><span class="p">)</span>
+
+    <span class="c1"># --- 4. AVC selon maladie cardiaque et tabac (heatmap)</span>
+    <span class="n">rate_list</span> <span class="o">=</span> <span class="n">calc_avc_maladie_tabac</span><span class="p">(</span><span class="n">patients_data</span><span class="p">)</span>
+
+    <span class="c1"># Préparer les axes et la matrice des valeurs</span>
+    <span class="n">smoking_statuses</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;smoking_status&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">rate_list</span><span class="p">)))</span>
+    <span class="n">heart_diseases</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># 0 = pas de maladie cardiaque, 1 = maladie cardiaque</span>
+    <span class="n">z_matrix</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">hd</span> <span class="ow">in</span> <span class="n">heart_diseases</span><span class="p">:</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ss</span> <span class="ow">in</span> <span class="n">smoking_statuses</span><span class="p">:</span>
+            <span class="c1"># Chercher le taux correspondant</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="n">d</span><span class="p">[</span><span class="s2">&quot;stroke&quot;</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">rate_list</span>
+                    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;heart_disease&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">hd</span> <span class="ow">and</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;smoking_status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">ss</span>
+                <span class="p">),</span>
+                <span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">z_matrix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="n">fig4</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">z_matrix</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">smoking_statuses</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Sans maladie cardiaque&quot;</span><span class="p">,</span> <span class="s2">&quot;Avec maladie cardiaque&quot;</span><span class="p">],</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;Statut fumeur&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;Maladie cardiaque&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Taux d&#39;AVC (%)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>
+        <span class="n">text_auto</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Taux d&#39;AVC selon maladie cardiaque et statut tabac&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">st</span><span class="o">.</span><span class="n">plotly_chart</span><span class="p">(</span><span class="n">fig4</span><span class="p">)</span>
+
+    <span class="c1"># --- 5. Scatter IMC vs Âge pour AVC avec 2 couleurs distinctes</span>
+    <span class="n">scatter_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients_data</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">fig5</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">scatter_data</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;bmi&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span>
+        <span class="n">color_discrete_map</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Male&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">},</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;Âge&quot;</span><span class="p">,</span> <span class="s2">&quot;bmi&quot;</span><span class="p">:</span> <span class="s2">&quot;IMC&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">:</span> <span class="s2">&quot;Genre&quot;</span><span class="p">},</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;IMC vs Âge des patients ayant eu un AVC&quot;</span><span class="p">,</span>
+        <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;stroke&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">plotly_chart</span><span class="p">(</span><span class="n">fig5</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="statistiques">Statistiques</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="streamlit_app.modules.statistiques"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.statistiques.fetch_stats" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_stats</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Récupère les statistiques depuis l'API et retourne les données au format JSON.</p>
+<p>Effectue une requête GET vers l'endpoint <code>/stats/</code> de l'API définie par <code>API_URL</code>.
+Si la requête est réussie, la réponse est convertie en dictionnaire Python via <code>response.json()</code>.
+En cas d'erreur (connexion, statut HTTP invalide, etc.), un message d'erreur est affiché
+dans Streamlit et la fonction retourne <code>None</code>.</p>
+<h4 id="streamlit_app.modules.statistiques.fetch_stats--returns">Returns</h4>
+<p>dict | None
+    Un dictionnaire contenant les statistiques si la requête réussit,
+    sinon <code>None</code> en cas d'erreur.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/statistiques.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_stats</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Récupère les statistiques depuis l&#39;API et retourne les données au format JSON.</span>
+
+<span class="sd">    Effectue une requête GET vers l&#39;endpoint `/stats/` de l&#39;API définie par `API_URL`.</span>
+<span class="sd">    Si la requête est réussie, la réponse est convertie en dictionnaire Python via `response.json()`.</span>
+<span class="sd">    En cas d&#39;erreur (connexion, statut HTTP invalide, etc.), un message d&#39;erreur est affiché</span>
+<span class="sd">    dans Streamlit et la fonction retourne `None`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict | None</span>
+<span class="sd">        Un dictionnaire contenant les statistiques si la requête réussit,</span>
+<span class="sd">        sinon `None` en cas d&#39;erreur.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/stats/&quot;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Erreur API : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="streamlit_app.modules.statistiques.statistiques" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">statistiques</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Affiche les statistiques globales des patients dans l'application Streamlit.</p>
+<p>Fonctionnalités principales :
+- Récupère tous les patients via la fonction <code>filter_patient()</code>.
+- Calcule et affiche :
+    - Le nombre total de patients
+    - Le nombre d'hommes et de femmes
+    - Le nombre de patients ayant eu un AVC
+    - Le nombre de patients n'ayant pas eu d'AVC
+    - L'âge moyen des patients
+- Affiche les statistiques sous forme de tableau Streamlit (<code>st.dataframe</code>).</p>
+<p>Remarques :
+- La fonction ne prend pas d'arguments et ne retourne pas de valeur.
+- Les calculs sont réalisés sur l'ensemble des patients sans filtrage préalable.
+- Les genres sont considérés comme "male" ou "female" (insensible à la casse).</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>streamlit_app/modules/statistiques.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">statistiques</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Affiche les statistiques globales des patients dans l&#39;application Streamlit.</span>
+
+<span class="sd">    Fonctionnalités principales :</span>
+<span class="sd">    - Récupère tous les patients via la fonction `filter_patient()`.</span>
+<span class="sd">    - Calcule et affiche :</span>
+<span class="sd">        - Le nombre total de patients</span>
+<span class="sd">        - Le nombre d&#39;hommes et de femmes</span>
+<span class="sd">        - Le nombre de patients ayant eu un AVC</span>
+<span class="sd">        - Le nombre de patients n&#39;ayant pas eu d&#39;AVC</span>
+<span class="sd">        - L&#39;âge moyen des patients</span>
+<span class="sd">    - Affiche les statistiques sous forme de tableau Streamlit (`st.dataframe`).</span>
+
+<span class="sd">    Remarques :</span>
+<span class="sd">    - La fonction ne prend pas d&#39;arguments et ne retourne pas de valeur.</span>
+<span class="sd">    - Les calculs sont réalisés sur l&#39;ensemble des patients sans filtrage préalable.</span>
+<span class="sd">    - Les genres sont considérés comme &quot;male&quot; ou &quot;female&quot; (insensible à la casse).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;Statistiques&quot;</span><span class="p">)</span>
+    <span class="n">patients_all</span> <span class="o">=</span> <span class="n">filter_patient</span><span class="p">()</span>
+    <span class="n">total_patients</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">patients_all</span><span class="p">)</span>
+
+    <span class="c1"># Compteurs AVC</span>
+    <span class="n">stroke_true</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;stroke&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients_all</span><span class="p">)</span>
+    <span class="n">stroke_false</span> <span class="o">=</span> <span class="n">total_patients</span> <span class="o">-</span> <span class="n">stroke_true</span>
+
+    <span class="c1"># Âge moyen</span>
+    <span class="n">avg_age</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients_all</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_patients</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">total_patients</span>
+        <span class="k">else</span> <span class="mi">0</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Compteurs par genre</span>
+    <span class="n">nb_hommes</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients_all</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;male&quot;</span><span class="p">)</span>
+    <span class="n">nb_femmes</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">patients_all</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;female&quot;</span><span class="p">)</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Total patients&quot;</span><span class="p">,</span> <span class="n">total_patients</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Hommes&quot;</span><span class="p">,</span> <span class="n">nb_hommes</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Femmes&quot;</span><span class="p">,</span> <span class="n">nb_femmes</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Patients avec AVC&quot;</span><span class="p">,</span> <span class="n">stroke_true</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Patients sans AVC&quot;</span><span class="p">,</span> <span class="n">stroke_false</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Âge moyen&quot;</span><span class="p">,</span> <span class="n">avg_age</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">stats_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Statistique&quot;</span><span class="p">,</span> <span class="s2">&quot;Valeur&quot;</span><span class="p">])</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">stats_df</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
