@@ -1,0 +1,36 @@
+site_name: Prediction Stroke App
+site_description: Documentation complète du projet Prediction Stroke App
+
+# Thème Material
+theme:
+  name: material
+  palette:
+    scheme: default
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+    # Plugins
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+
+# Navigation
+nav:
+  - Accueil: index.md
+  - Données: donnees.md
+  - Streamlit App:
+      - Présentation: streamlit/index.md
+      - Modules: streamlit/modules.md
+      - Utils: streamlit/utils.md
+  - API:
+      - Présentation: api/index.md
+      - Filters: api/filters.md
+      - API Modules: api/api.md
+
+# Configuration pour le serveur local
+dev_addr: 127.0.0.1:8001
