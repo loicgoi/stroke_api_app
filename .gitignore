@@ -1,9 +1,6 @@
 __pycache__/
 *.pyc
 
-docs/
-*.md
-
-mkdocs.yml
-
 site/
+
+.vscode/
